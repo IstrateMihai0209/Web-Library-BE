@@ -29,3 +29,16 @@ G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\refint\OnlineL
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\OnlineLibrary.pdb
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\OnlineLibrary.genruntimeconfig.cache
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\ref\OnlineLibrary.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\OnlineLibrary.csproj.AssemblyReference.cache
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\OnlineLi.D493E3FF.Up2Date
