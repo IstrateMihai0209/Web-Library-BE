@@ -1,7 +1,19 @@
+using OnlineLibrary.Models.Repositories.Book;
+using OnlineLibrary.Models.Repositories.Category;
+using OnlineLibrary.Models.Repositories.ReadingHistory;
+using OnlineLibrary.Models.Repositories.Role;
+using OnlineLibrary.Models.Repositories.User;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IReadingHistoryRepository, ReadingHistoryRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
