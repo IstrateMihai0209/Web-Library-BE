@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using OnlineLibrary.Models;
 using OnlineLibrary.Models.Repositories.Book;
 using OnlineLibrary.Models.Repositories.Category;
 using OnlineLibrary.Models.Repositories.ReadingHistory;
@@ -8,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<LibraryDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
