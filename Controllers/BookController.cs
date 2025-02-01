@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineLibrary.Models;
 using OnlineLibrary.Models.Repositories.Book;
 using OnlineLibrary.Models.Repositories.Category;
 
 namespace OnlineLibrary.Controllers
 {
     [ApiController]
-    public class BookController : ControllerBase
+    public class BookController : Controller
     {
         private readonly IBookRepository _bookRepository;
         private readonly ICategoryRepository _categoryRepository;
@@ -54,7 +55,16 @@ namespace OnlineLibrary.Controllers
         [HttpPost]
         public async Task<IActionResult> Upload()
         {
-            throw new NotImplementedException();
+            var newBook = new BookModel();
+            newBook.Id = 1000;
+            newBook.Title = "Capra cu trei iezi";
+            newBook.FilePath = "aaa";
+            newBook.UploadedAt = DateTime.Now;
+            newBook.UserId = 1000;
+
+
+            await _bookRepository.AddAsync(newBook);
+            return Json(newBook);
         }
 
         [HttpPut]
