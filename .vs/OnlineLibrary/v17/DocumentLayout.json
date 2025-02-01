@@ -3,72 +3,40 @@
   "WorkspaceRootPath": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\bookstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:bookstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\ifilestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:ifilestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\cloudfilestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:cloudfilestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\ifile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:ifile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\pdffile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:pdffile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\bookmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\bookmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\categorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\categorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\readinghistorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\readinghistorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\repositories\\book\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\repositories\\book\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\ibookstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:ibookstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\controllers\\readinghistorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:controllers\\readinghistorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\repositories\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\repositories\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\repositories\\unitofwork\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\repositories\\unitofwork\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\repositories\\book\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\repositories\\book\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\repositories\\book\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\repositories\\book\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,229 +46,133 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABGAAAA",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAACAAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T08:26:35.109Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Repository.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Repository.cs",
-              "RelativeDocumentMoniker": "Models\\Repositories\\Repository.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Repository.cs",
-              "RelativeToolTip": "Models\\Repositories\\Repository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T12:23:56.884Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "BookRepository.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Book\\BookRepository.cs",
-              "RelativeDocumentMoniker": "Models\\Repositories\\Book\\BookRepository.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Book\\BookRepository.cs",
-              "RelativeToolTip": "Models\\Repositories\\Book\\BookRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T12:23:41.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ReadingHistoryModel.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\ReadingHistoryModel.cs",
-              "RelativeDocumentMoniker": "Models\\ReadingHistoryModel.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\ReadingHistoryModel.cs",
-              "RelativeToolTip": "Models\\ReadingHistoryModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T12:23:36.952Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CategoryModel.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\CategoryModel.cs",
-              "RelativeDocumentMoniker": "Models\\CategoryModel.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\CategoryModel.cs",
-              "RelativeToolTip": "Models\\CategoryModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T12:23:32.076Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BookModel.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\BookModel.cs",
-              "RelativeDocumentMoniker": "Models\\BookModel.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\BookModel.cs",
-              "RelativeToolTip": "Models\\BookModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T12:23:12.695Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PdfFile.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\PdfFile.cs",
-              "RelativeDocumentMoniker": "PdfFile.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\PdfFile.cs",
-              "RelativeToolTip": "PdfFile.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:48:52.779Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IFile.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\IFile.cs",
-              "RelativeDocumentMoniker": "IFile.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\IFile.cs",
-              "RelativeToolTip": "IFile.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:48:27.685Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BookController.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\BookController.cs",
-              "RelativeDocumentMoniker": "Controllers\\BookController.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\BookController.cs",
-              "RelativeToolTip": "Controllers\\BookController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T10:30:21.335Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CloudFileStorageService.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\CloudFileStorageService.cs",
-              "RelativeDocumentMoniker": "CloudFileStorageService.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\CloudFileStorageService.cs",
-              "RelativeToolTip": "CloudFileStorageService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:47:59.53Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IFileStorageService.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\IFileStorageService.cs",
-              "RelativeDocumentMoniker": "IFileStorageService.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\IFileStorageService.cs",
-              "RelativeToolTip": "IFileStorageService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:47:15.833Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BookStorageService.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\BookStorageService.cs",
-              "RelativeDocumentMoniker": "BookStorageService.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\BookStorageService.cs",
-              "RelativeToolTip": "BookStorageService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:46:38.85Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LoginModel.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\LoginModel.cs",
-              "RelativeDocumentMoniker": "Models\\LoginModel.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\LoginModel.cs",
-              "RelativeToolTip": "Models\\LoginModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:36:50.86Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "IBookStorageService.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\IBookStorageService.cs",
-              "RelativeDocumentMoniker": "IBookStorageService.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\IBookStorageService.cs",
-              "RelativeToolTip": "IBookStorageService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:45:42.902Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "Controllers\\CategoryController.cs",
               "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\CategoryController.cs",
               "RelativeToolTip": "Controllers\\CategoryController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAQwB4AAAAwAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:42:22.515Z"
+              "WhenOpened": "2025-02-01T18:57:49.488Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ReadingHistoryController.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\ReadingHistoryController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ReadingHistoryController.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\ReadingHistoryController.cs",
-              "RelativeToolTip": "Controllers\\ReadingHistoryController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAASAAAA",
+              "DocumentIndex": 2,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\UnitOfWork\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "Models\\Repositories\\UnitOfWork\\UnitOfWork.cs",
+              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\UnitOfWork\\UnitOfWork.cs",
+              "RelativeToolTip": "Models\\Repositories\\UnitOfWork\\UnitOfWork.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAIwB0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:40:45.795Z"
+              "WhenOpened": "2025-02-01T18:23:39.454Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAPAAAA",
+              "DocumentIndex": 3,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\UnitOfWork\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "Models\\Repositories\\UnitOfWork\\IUnitOfWork.cs",
+              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\UnitOfWork\\IUnitOfWork.cs",
+              "RelativeToolTip": "Models\\Repositories\\UnitOfWork\\IUnitOfWork.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:33:36.692Z"
+              "WhenOpened": "2025-02-01T18:22:56.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IBookRepository.cs",
+              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Book\\IBookRepository.cs",
+              "RelativeDocumentMoniker": "Models\\Repositories\\Book\\IBookRepository.cs",
+              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Book\\IBookRepository.cs",
+              "RelativeToolTip": "Models\\Repositories\\Book\\IBookRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T17:59:22.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Repository.cs",
+              "RelativeDocumentMoniker": "Models\\Repositories\\Repository.cs",
+              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Repository.cs",
+              "RelativeToolTip": "Models\\Repositories\\Repository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T17:18:54.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\IRepository.cs",
+              "RelativeDocumentMoniker": "Models\\Repositories\\IRepository.cs",
+              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\IRepository.cs",
+              "RelativeToolTip": "Models\\Repositories\\IRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAIAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T17:18:18.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BookRepository.cs",
+              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Book\\BookRepository.cs",
+              "RelativeDocumentMoniker": "Models\\Repositories\\Book\\BookRepository.cs",
+              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Book\\BookRepository.cs",
+              "RelativeToolTip": "Models\\Repositories\\Book\\BookRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAgAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T17:07:56.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookController.cs",
+              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\BookController.cs",
+              "RelativeToolTip": "Controllers\\BookController.cs",
+              "ViewState": "AQIAAGUAAAAAAAAAAAAgwHwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T16:50:02.813Z",
+              "EditorCaption": ""
             }
           ]
         }

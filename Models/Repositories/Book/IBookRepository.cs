@@ -2,9 +2,9 @@
 {
     public interface IBookRepository : IRepository<BookModel>
     {
-        Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync();
+        Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync(int userId);
 
-        Task<IEnumerable<BookModel>> GetBooksByCategoryAsync();
+        Task<IEnumerable<BookModel>> GetBooksByCategoryAsync(int categoryId);
 
         Task<IEnumerable<BookModel>> GetBooksByGenreAsync();
     }

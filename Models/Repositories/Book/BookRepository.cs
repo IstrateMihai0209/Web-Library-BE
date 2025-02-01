@@ -4,12 +4,12 @@
     {
         public BookRepository(LibraryDbContext dbContext) : base(dbContext) { }
 
-        public Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync()
+        public Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync(int userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<BookModel>> GetBooksByCategoryAsync()
+        public Task<IEnumerable<BookModel>> GetBooksByCategoryAsync(int categoryId)
         {
             throw new NotImplementedException();
         }

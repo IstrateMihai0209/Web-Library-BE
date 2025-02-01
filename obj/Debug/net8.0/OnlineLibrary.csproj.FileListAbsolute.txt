@@ -42,3 +42,8 @@ G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Exte
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\OnlineLi.D493E3FF.Up2Date
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.OpenApi.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\OnlineLibrary.MvcApplicationPartsAssemblyInfo.cs
