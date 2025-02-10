@@ -1,17 +1,24 @@
-﻿namespace OnlineLibrary.Models.Repositories.Book
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineLibrary.Models.Book;
+
+namespace OnlineLibrary.Models.Repositories.Book
 {
     public class BookRepository : Repository<BookModel>, IBookRepository
     {
         public BookRepository(LibraryDbContext dbContext) : base(dbContext) { }
 
-        public Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync()
+        public async Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync(int userId)
         {
-            throw new NotImplementedException();
+            return await _dbSet
+                .Where(b => b.UserId == userId)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<BookModel>> GetBooksByCategoryAsync()
+        public async Task<IEnumerable<BookModel>> GetBooksByCategoryAsync(int categoryId)
         {
-            throw new NotImplementedException();
+            return await _dbSet
+                .Where(b => b.CategoryId == categoryId)
+                .ToListAsync();
         }
 
         public Task<IEnumerable<BookModel>> GetBooksByGenreAsync()

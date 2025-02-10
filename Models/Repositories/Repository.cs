@@ -4,38 +4,42 @@ namespace OnlineLibrary.Models.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbSet<T> _dbSet;
-        private readonly LibraryDbContext _dbContext;
+        protected readonly DbSet<T> _dbSet;
 
         public Repository(LibraryDbContext dbContext)
         {
-            _dbContext = dbContext;
             _dbSet = dbContext.Set<T>();
         }
 
-        public Task AddAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
+            return entity;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FindAsync(id);
         }
+
 
         public Task<IEnumerable<T>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Update(entity);
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _dbSet.FindAsync(id);
+            if (entity == null) return false;
+
+            _dbSet.Remove(entity);
+            return true;
         }
     }
 }

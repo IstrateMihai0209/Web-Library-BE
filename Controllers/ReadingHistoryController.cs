@@ -3,20 +3,19 @@ using OnlineLibrary.Models.Repositories.ReadingHistory;
 
 namespace OnlineLibrary.Controllers
 {
-    [ApiController]
-    public class ReadingHistoryController : ControllerBase
+    public class ReadingHistoryController : Controller
     {
-        private readonly IReadingHistoryRepository _readingHistoryRepository;
+        //private readonly IReadingHistoryRepository _readingHistoryRepository;
     
-        public ReadingHistoryController(IReadingHistoryRepository readingHistoryRepository)
-        {
-            _readingHistoryRepository = readingHistoryRepository;
-        }
+        //public ReadingHistoryController(IReadingHistoryRepository readingHistoryRepository)
+        //{
+        //    _readingHistoryRepository = readingHistoryRepository;
+        //}
 
-        [HttpGet]
-        public Task<IActionResult> Get(int userId)
-        {
-            throw new NotImplementedException();
-        }
+        //[HttpGet]
+        //public Task<IActionResult> Get(int userId)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
