@@ -1,76 +1,151 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineLibrary.Models;
-using OnlineLibrary.Models.Repositories.Book;
-using OnlineLibrary.Models.Repositories.Category;
+using Microsoft.EntityFrameworkCore;
+using OnlineLibrary.Models.Repositories.UnitOfWork;
+using OnlineLibrary.Models.Book;
 
 namespace OnlineLibrary.Controllers
 {
     [ApiController]
+    [Route("api/book")]
     public class BookController : Controller
     {
-        private readonly IBookRepository _bookRepository;
-        private readonly ICategoryRepository _categoryRepository;
+        private const int InternalServerErrorCode = 500;
+        private const string InternalServerError = "Internal server error!";
 
-        public BookController(IBookRepository bookRepository, ICategoryRepository categoryRepository)
-        {
-            _bookRepository = bookRepository;
-            _categoryRepository = categoryRepository;
-        }
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IBookService _bookService;
 
-        [HttpGet]
-        public async Task<IActionResult> List(string category)
+        public BookController(IUnitOfWork unitOfWork, IBookService bookService)
         {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> List(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Details(int bookId)
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Search(string searchQuery)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IActionResult> Read(int bookId)
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpDelete]
-        public async Task<IActionResult> Delete(int bookId)
-        {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+            _bookService = bookService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload()
+        public async Task<IActionResult> Upload([FromBody] BookModel book)
         {
-            var newBook = new BookModel();
-            newBook.Id = 1000;
-            newBook.Title = "Capra cu trei iezi";
-            newBook.FilePath = "aaa";
-            newBook.UploadedAt = DateTime.Now;
-            newBook.UserId = 1000;
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
+            try
+            {
+                var createdBook = await _unitOfWork.BookRepository.AddAsync(book);
+                await _unitOfWork.CommitAsync();
 
-            await _bookRepository.AddAsync(newBook);
-            return Json(newBook);
+                return CreatedAtAction(
+                    nameof(GetById),
+                    new { bookId = createdBook.Id },
+                    book);
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(InternalServerErrorCode, "A database error occured!");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Edit(int bookId)
+        [HttpGet("{bookId}")]
+        [ActionName(nameof(GetById))]
+        public async Task<IActionResult> GetById(int bookId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var book = await _unitOfWork.BookRepository.GetByIdAsync(bookId);
+                if (book == null) return NotFound();
+
+                return Json(book);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+
+        [HttpGet("category/{categoryId}")]
+        public async Task<IActionResult> ListByCategory(int categoryId)
+        {
+            try
+            {
+                var books = await _unitOfWork.BookRepository.GetBooksByCategoryAsync(categoryId);
+                if (books == null || books.Count() == 0) return NotFound();
+
+                return Json(books);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+
+        [HttpGet("uploader/{userId}")]
+        public async Task<IActionResult> ListByUploader(int userId)
+        {
+            try
+            {
+                var books = await _unitOfWork.BookRepository.GetBooksOfUploaderAsync(userId);
+                if (books == null || books.Count() == 0) return NotFound();
+
+                return Json(books);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+
+        //[HttpGet]
+        //public async Task<IActionResult> Search(string searchQuery)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public async Task<IActionResult> Read(int bookId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        [HttpPut("{bookId}")]
+        public async Task<IActionResult> Edit(int bookId, [FromBody] BookDto bookDto)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            try
+            {
+                var updatedBook = await _bookService.UpdateBook(bookId, bookDto);
+                if(updatedBook == null) return NotFound();
+
+                _unitOfWork.BookRepository.Update(updatedBook);
+
+                await _unitOfWork.CommitAsync();
+                return Ok(updatedBook);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Conflict("Entity was modified by another user!");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+
+        [HttpDelete("{bookId}")]
+        public async Task<IActionResult> Delete(int bookId)
+        {
+            try
+            {
+                var success = await _unitOfWork.BookRepository.DeleteAsync(bookId);
+                if (!success) return NotFound();
+
+                await _unitOfWork.CommitAsync();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
         }
     }
 }

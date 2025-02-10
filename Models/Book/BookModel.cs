@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OnlineLibrary.Models
+namespace OnlineLibrary.Models.Book
 {
     public class BookModel
     {
@@ -21,8 +21,6 @@ namespace OnlineLibrary.Models
 
         public int CategoryId { get; set; }
 
-        public CategoryModel Category { get; set; }
-
         [Required]
         [StringLength(200)]
         public string FilePath { get; set; }
@@ -35,8 +33,6 @@ namespace OnlineLibrary.Models
         /// </summary>
         [Required]
         public int UserId { get; set; }
-
-        public UserModel User { get; set; }
 
         public string CoverImage { get; set; }
     }

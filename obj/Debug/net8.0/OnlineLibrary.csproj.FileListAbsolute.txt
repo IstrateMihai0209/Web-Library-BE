@@ -157,3 +157,8 @@ G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\runtimes\win-a
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.OpenApi.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\OnlineLibrary.MvcApplicationPartsAssemblyInfo.cs

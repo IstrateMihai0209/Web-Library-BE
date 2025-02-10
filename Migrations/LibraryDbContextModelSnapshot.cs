@@ -26,6 +26,9 @@ namespace OnlineLibrary.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("CategoryModelId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("CoverImage")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -64,11 +67,9 @@ namespace OnlineLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryModelId");
 
                     b.HasIndex("ReadingHistoryModelId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Books");
                 });
@@ -91,6 +92,14 @@ namespace OnlineLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "All romanian novels from XX century",
+                            Name = "Romanian Novels XX"
+                        });
                 });
 
             modelBuilder.Entity("OnlineLibrary.Models.LoginModel", b =>
@@ -137,6 +146,13 @@ namespace OnlineLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("OnlineLibrary.Models.UserModel", b =>
@@ -183,29 +199,32 @@ namespace OnlineLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin@mail.com",
+                            GoogleId = 1,
+                            Name = "Admin",
+                            Password = "secret",
+                            Permission = "Yes",
+                            RememberLogin = true,
+                            ReturnUrl = "",
+                            RoleId = 1
+                        });
                 });
 
             modelBuilder.Entity("OnlineLibrary.Models.BookModel", b =>
                 {
-                    b.HasOne("OnlineLibrary.Models.CategoryModel", "Category")
+                    b.HasOne("OnlineLibrary.Models.CategoryModel", null)
                         .WithMany("Books")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryModelId");
 
                     b.HasOne("OnlineLibrary.Models.ReadingHistoryModel", null)
                         .WithMany("Books")
                         .HasForeignKey("ReadingHistoryModelId");
-
-                    b.HasOne("OnlineLibrary.Models.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("OnlineLibrary.Models.ReadingHistoryModel", b =>
