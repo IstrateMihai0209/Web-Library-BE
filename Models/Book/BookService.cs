@@ -23,8 +23,14 @@ namespace OnlineLibrary.Models.Book
             book.PublishDate = bookDto.PublishDate;
             book.UploadedAt = bookDto.UploadedAt;
             book.CoverImage = bookDto.CoverImage;
+            book.Popularity = bookDto.Popularity;
 
             return book;
+        }
+
+        public void IncreaseBookPopularity(BookModel book)
+        {
+            book.Popularity++;
         }
     }
 }

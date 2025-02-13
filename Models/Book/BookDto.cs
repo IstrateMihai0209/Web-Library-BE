@@ -15,5 +15,7 @@
         public DateTime UploadedAt { get; set; }
 
         public string CoverImage { get; set; }
+
+        public int Popularity { get; set; }
     }
 }

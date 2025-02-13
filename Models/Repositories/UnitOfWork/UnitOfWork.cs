@@ -1,4 +1,8 @@
 ﻿using OnlineLibrary.Models.Repositories.Book;
+using OnlineLibrary.Models.Repositories.ReadBooks;
+using OnlineLibrary.Models.Repositories.ReadingHistory;
+using OnlineLibrary.Models.Repositories.User;
+using OnlineLibrary.Models.Repositories.Wishlist;
 
 namespace OnlineLibrary.Models.Repositories.UnitOfWork
 {
@@ -6,13 +10,27 @@ namespace OnlineLibrary.Models.Repositories.UnitOfWork
     {
         private readonly LibraryDbContext _libraryDbContext;
         private IBookRepository _bookRepository;
+        private IReadingHistoryRepository _readingHistoryRepository;
+        private IUserRepository _userRepository;
+        private IWishlistRepository _wishlistRepository;
+        private IReadBooksRepository _readBooksRepository;
 
         private bool _disposed;
 
-        public UnitOfWork(LibraryDbContext libraryDbContext, IBookRepository bookRepository)
+        public UnitOfWork(
+            LibraryDbContext libraryDbContext,
+            IBookRepository bookRepository,
+            IReadingHistoryRepository readingHistoryRepository,
+            IUserRepository userRepository,
+            IWishlistRepository wishlistRepository,
+            IReadBooksRepository readBooksRepository)
         {
             _libraryDbContext = libraryDbContext;
             _bookRepository = bookRepository;
+            _readingHistoryRepository = readingHistoryRepository;
+            _userRepository = userRepository;
+            _wishlistRepository = wishlistRepository;
+            _readBooksRepository = readBooksRepository;
         }
 
 
@@ -25,6 +43,13 @@ namespace OnlineLibrary.Models.Repositories.UnitOfWork
         // Specific repository (lazy-loaded)
         public IBookRepository BookRepository => _bookRepository ??= new BookRepository(_libraryDbContext);
 
+        public IReadingHistoryRepository ReadingHistoryRepository => _readingHistoryRepository ??= new ReadingHistoryRepository(_libraryDbContext);
+
+        public IUserRepository UserRepository => _userRepository ??= new UserRepository(_libraryDbContext);
+
+        public IWishlistRepository WishlistRepository => _wishlistRepository ??= new WishlistRepository(_libraryDbContext);
+
+        public IReadBooksRepository ReadBooksRepository => _readBooksRepository ??= new ReadBooksRepository(_libraryDbContext);
 
         public async Task CommitAsync()
         {

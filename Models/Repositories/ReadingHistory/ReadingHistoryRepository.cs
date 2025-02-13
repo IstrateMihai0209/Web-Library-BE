@@ -1,12 +1,16 @@
-﻿namespace OnlineLibrary.Models.Repositories.ReadingHistory
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace OnlineLibrary.Models.Repositories.ReadingHistory
 {
     public class ReadingHistoryRepository : Repository<ReadingHistoryModel>, IReadingHistoryRepository
     {
         public ReadingHistoryRepository(LibraryDbContext dbContext) : base(dbContext) { }
 
-        public Task<ReadingHistoryModel> GetReadingHistoryOfUserAsync()
+        public async Task<ReadingHistoryModel> GetReadingHistoryOfUserAsync(int userId)
         {
-            throw new NotImplementedException();
+            return await _dbSet
+                .Where(x => x.UserId == userId)
+                .FirstOrDefaultAsync();
         }
     }
 }

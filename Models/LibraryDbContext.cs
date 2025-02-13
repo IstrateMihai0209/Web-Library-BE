@@ -11,6 +11,9 @@ namespace OnlineLibrary.Models
         public DbSet<ReadingHistoryModel> ReadingHistories { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<WishlistModel> Wishlists { get; set; }
+
+        public DbSet<ReadBooksModel> ReadBooks { get; set; }
 
         public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options) { }
 

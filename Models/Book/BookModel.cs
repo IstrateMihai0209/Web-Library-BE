@@ -35,5 +35,7 @@ namespace OnlineLibrary.Models.Book
         public int UserId { get; set; }
 
         public string CoverImage { get; set; }
+
+        public int Popularity { get; set; }
     }
 }

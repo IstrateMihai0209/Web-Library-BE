@@ -2,6 +2,6 @@
 {
     public interface IReadingHistoryRepository : IRepository<ReadingHistoryModel>
     {
-        Task<ReadingHistoryModel> GetReadingHistoryOfUserAsync();
+        Task<ReadingHistoryModel> GetReadingHistoryOfUserAsync(int userId);
     }
 }
