@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using OnlineLibrary.Models.Book;
+﻿using OnlineLibrary.Models.Book;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineLibrary.Models
 {
-    public class ReadingHistoryModel
+    public class ReadBooksModel
     {
         [Key]
         public int Id { get; set; }
@@ -12,8 +12,5 @@ namespace OnlineLibrary.Models
         public int UserId { get; set; }
 
         public ICollection<BookModel> Books { get; set; }
-
-        [Required]
-        public DateTime AccessDate { get; set; }
     }
 }

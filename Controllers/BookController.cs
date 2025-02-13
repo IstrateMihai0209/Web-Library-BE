@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineLibrary.Models.Book;
 using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
-using OnlineLibrary.Models.Book;
 
 namespace OnlineLibrary.Controllers
 {
@@ -54,6 +54,10 @@ namespace OnlineLibrary.Controllers
             {
                 var book = await _unitOfWork.BookRepository.GetByIdAsync(bookId);
                 if (book == null) return NotFound();
+
+                _bookService.IncreaseBookPopularity(book);
+                _unitOfWork.BookRepository.Update(book);
+                await _unitOfWork.CommitAsync();
 
                 return Json(book);
             }
@@ -141,6 +145,22 @@ namespace OnlineLibrary.Controllers
 
                 await _unitOfWork.CommitAsync();
                 return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+
+        [HttpGet("top-popular")]
+        public async Task<IActionResult> GetNextByPopularity([FromQuery] int count = 40, [FromQuery] int pageNumber = 1)
+        {
+            try
+            {
+                var books = await _unitOfWork.BookRepository.GetTopPopularBooksAsync(count, pageNumber);
+                if (books == null || books.Count() == 0) return NotFound();
+
+                return Json(books);
             }
             catch (Exception ex)
             {

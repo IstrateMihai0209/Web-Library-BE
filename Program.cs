@@ -8,6 +8,8 @@ using OnlineLibrary.Models.Repositories.Role;
 using OnlineLibrary.Models.Repositories.User;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
 using OnlineLibrary.Models.Book;
+using OnlineLibrary.Models.Repositories.Wishlist;
+using OnlineLibrary.Models.Repositories.ReadBooks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +30,8 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IReadingHistoryRepository, ReadingHistoryRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
+builder.Services.AddScoped<IReadBooksRepository, ReadBooksRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
