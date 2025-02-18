@@ -32,5 +32,11 @@ namespace OnlineLibrary.Models.Book
         {
             book.Popularity++;
         }
+
+        public string GetBookCoverNameFromStorage(string name)
+        {
+            var newName = name.ToLower().Replace(' ', '-');
+            return newName;
+        }
     }
 }
