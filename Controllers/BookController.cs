@@ -2,6 +2,7 @@
 using OnlineLibrary.Models.Book;
 using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
+using OnlineLibrary.Storage;
 
 namespace OnlineLibrary.Controllers
 {
@@ -14,11 +15,13 @@ namespace OnlineLibrary.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBookService _bookService;
+        private readonly IBookStorageService _bookStorageService;
 
-        public BookController(IUnitOfWork unitOfWork, IBookService bookService)
+        public BookController(IUnitOfWork unitOfWork, IBookService bookService, IBookStorageService bookStorageService)
         {
             _unitOfWork = unitOfWork;
             _bookService = bookService;
+            _bookStorageService = bookStorageService;
         }
 
         [HttpPost]

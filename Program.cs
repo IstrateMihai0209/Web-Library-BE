@@ -1,17 +1,31 @@
-using System.Reflection;
 using OnlineLibrary.Models;
+using OnlineLibrary.Models.Book;
 using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Repositories.Book;
-using OnlineLibrary.Models.Repositories.Category;
-using OnlineLibrary.Models.Repositories.ReadingHistory;
-using OnlineLibrary.Models.Repositories.Role;
 using OnlineLibrary.Models.Repositories.User;
-using OnlineLibrary.Models.Repositories.UnitOfWork;
-using OnlineLibrary.Models.Book;
+using OnlineLibrary.Models.Repositories.Role;
+using OnlineLibrary.Models.Repositories.Category;
 using OnlineLibrary.Models.Repositories.Wishlist;
 using OnlineLibrary.Models.Repositories.ReadBooks;
+using OnlineLibrary.Models.Repositories.UnitOfWork;
+using OnlineLibrary.Models.Repositories.ReadingHistory;
+using OnlineLibrary.Storage;
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                         
+                      });
+});
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -33,6 +47,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
 builder.Services.AddScoped<IReadBooksRepository, ReadBooksRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IBookStorageService, BookStorageService>();
+builder.Services.AddScoped<IFileStorageService, BlobStorageService>();
 
 var app = builder.Build();
 
@@ -55,6 +71,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

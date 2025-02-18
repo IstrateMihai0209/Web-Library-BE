@@ -162,3 +162,9 @@ G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Swashbuckle.As
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\OnlineLibrary.MvcApplicationPartsAssemblyInfo.cs
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Azure.Core.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Azure.Storage.Common.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.ClientModel.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.IO.Hashing.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.Memory.Data.dll

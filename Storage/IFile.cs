@@ -1,8 +1,8 @@
-﻿namespace OnlineLibrary
+﻿namespace OnlineLibrary.Storage
 {
     public interface IFile
     {
-        public int Id { get; set; }
+        public string Name { get; set; }
 
         public string Path { get; set; }
     }
