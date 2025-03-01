@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Book;
+using OnlineLibrary.Models.ReadBooks;
+using OnlineLibrary.Models.ReadingHistory;
+using OnlineLibrary.Models.Wishlist;
 
 namespace OnlineLibrary.Models
 {

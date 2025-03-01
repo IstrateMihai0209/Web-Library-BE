@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineLibrary.Models;
 
@@ -10,9 +11,11 @@ using OnlineLibrary.Models;
 namespace OnlineLibrary.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250218125650_ReadingHistoryUpdate")]
+    partial class ReadingHistoryUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -84,7 +87,7 @@ namespace OnlineLibrary.Migrations
 
                     b.HasIndex("WishlistModelId");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("OnlineLibrary.Models.CategoryModel", b =>
@@ -104,7 +107,7 @@ namespace OnlineLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -123,7 +126,7 @@ namespace OnlineLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Login", (string)null);
+                    b.ToTable("Login");
                 });
 
             modelBuilder.Entity("OnlineLibrary.Models.ReadBooksModel", b =>
@@ -137,7 +140,7 @@ namespace OnlineLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReadBooks", (string)null);
+                    b.ToTable("ReadBooks");
                 });
 
             modelBuilder.Entity("OnlineLibrary.Models.ReadingHistory.ReadingHistoryModel", b =>
@@ -154,7 +157,7 @@ namespace OnlineLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReadingHistories", (string)null);
+                    b.ToTable("ReadingHistories");
                 });
 
             modelBuilder.Entity("OnlineLibrary.Models.RoleModel", b =>
@@ -170,7 +173,7 @@ namespace OnlineLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
 
                     b.HasData(
                         new
@@ -223,7 +226,7 @@ namespace OnlineLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
 
                     b.HasData(
                         new
@@ -265,7 +268,7 @@ namespace OnlineLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Wishlists", (string)null);
+                    b.ToTable("Wishlists");
                 });
 
             modelBuilder.Entity("OnlineLibrary.Models.Book.BookModel", b =>

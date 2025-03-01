@@ -49,9 +49,9 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpGet("{bookId}")]
+        [HttpGet]
         [ActionName(nameof(GetById))]
-        public async Task<IActionResult> GetById(int bookId)
+        public async Task<IActionResult> GetById([FromQuery] int bookId)
         {
             try
             {
@@ -70,8 +70,8 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpGet("category/{categoryId}")]
-        public async Task<IActionResult> ListByCategory(int categoryId)
+        [HttpGet("category")]
+        public async Task<IActionResult> ListByCategory([FromQuery] int categoryId)
         {
             try
             {
@@ -86,13 +86,13 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpGet("uploader/{userId}")]
-        public async Task<IActionResult> ListByUploader(int userId)
+        [HttpGet("uploader")]
+        public async Task<IActionResult> ListByUploader([FromQuery] int userId, [FromQuery] int pageNumber)
         {
             try
             {
-                var books = await _unitOfWork.BookRepository.GetBooksOfUploaderAsync(userId);
-                if (books == null || books.Count() == 0) return NotFound();
+                var books = await _unitOfWork.BookRepository.GetBooksOfUploaderAsync(userId, pageNumber);
+                if (books == null) return NotFound();
 
                 return Json(books);
             }
@@ -104,11 +104,6 @@ namespace OnlineLibrary.Controllers
 
         //[HttpGet]
         //public async Task<IActionResult> Search(string searchQuery)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public async Task<IActionResult> Read(int bookId)
         //{
         //    throw new NotImplementedException();
         //}
@@ -156,12 +151,12 @@ namespace OnlineLibrary.Controllers
         }
 
         [HttpGet("top-popular")]
-        public async Task<IActionResult> GetNextByPopularity([FromQuery] int count = 40, [FromQuery] int pageNumber = 1)
+        public async Task<IActionResult> GetNextByPopularity([FromQuery] int pageNumber = 1)
         {
             try
             {
-                var books = await _unitOfWork.BookRepository.GetTopPopularBooksAsync(count, pageNumber);
-                if (books == null || books.Count() == 0) return NotFound();
+                var books = await _unitOfWork.BookRepository.GetTopPopularBooksAsync(pageNumber);
+                if (books == null) return NotFound();
 
                 return Json(books);
             }

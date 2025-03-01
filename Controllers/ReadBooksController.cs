@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Book;
-using OnlineLibrary.Models;
+using OnlineLibrary.Models.ReadBooks;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
 
 namespace OnlineLibrary.Controllers
@@ -14,20 +14,22 @@ namespace OnlineLibrary.Controllers
         private const string InternalServerError = "Internal server error!";
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IReadBooksService _readBooksService;
 
-        public ReadBooksController(IUnitOfWork unitOfWork)
+        public ReadBooksController(IUnitOfWork unitOfWork, IReadBooksService readBooksService)
         {
             _unitOfWork = unitOfWork;
+            _readBooksService = readBooksService;
         }
 
 
-        [HttpGet("{userId}")]
+        [HttpGet]
         [ActionName(nameof(GetReadBooksOfUser))]
-        public async Task<IActionResult> GetReadBooksOfUser(int userId)
+        public async Task<IActionResult> GetReadBooksOfUser([FromQuery] int userId, [FromQuery] int pageNumber = 1)
         {
             try
             {
-                var readBooks = await _unitOfWork.ReadBooksRepository.GetReadBooksByUser(userId);
+                var readBooks = await _unitOfWork.ReadBooksRepository.GetReadBooksByUser(userId, pageNumber);
                 if (readBooks == null) return NotFound();
 
                 return Json(readBooks);
@@ -38,15 +40,15 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpPost("{userId}")]
-        public async Task<IActionResult> AddReadBooksSectionForUser(int userId)
+        [HttpPost]
+        public async Task<IActionResult> AddReadBooksSectionForUser([FromQuery] int userId)
         {
             try
             {
                 var user = await _unitOfWork.UserRepository.GetByIdAsync(userId);
                 if (user == null) return NotFound("User not found");
 
-                var existingWishlist = await _unitOfWork.ReadBooksRepository.GetReadBooksByUser(userId);
+                var existingWishlist = await _unitOfWork.ReadBooksRepository.GetReadBooksSectionByUser(userId);
                 if (existingWishlist != null) return Conflict("Read books section already exists for this user");
 
                 var newReadBooksModel = new ReadBooksModel
@@ -73,22 +75,18 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpPut("{readBooksId}")]
-        public async Task<IActionResult> AddBookToWishlist([FromQuery] int bookId, int readBooksId)
+        [HttpPut]
+        public async Task<IActionResult> AddBookToReadSection([FromQuery] int userId, [FromBody] ReadBooksDto readBooksDto)
         {
             try
             {
-                var readBooksModel = await _unitOfWork.ReadBooksRepository.GetByIdAsync(readBooksId);
-                if (readBooksModel == null) return NotFound("No read books section found!");
+                var updatedReadBooksSection = await _readBooksService.UpdateReadBooksByUser(userId, readBooksDto);
+                if (updatedReadBooksSection == null) return NotFound();
 
-                var book = await _unitOfWork.BookRepository.GetByIdAsync(bookId);
-                if (book == null) return NotFound("No book found!");
-
-                readBooksModel.Books.Add(book);
-                _unitOfWork.ReadBooksRepository.Update(readBooksModel);
-
+                _unitOfWork.ReadBooksRepository.Update(updatedReadBooksSection);
                 await _unitOfWork.CommitAsync();
-                return Ok(book);
+
+                return Ok(updatedReadBooksSection);
             }
             catch (DbUpdateException ex)
             {

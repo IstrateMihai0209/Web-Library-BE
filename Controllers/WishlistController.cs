@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OnlineLibrary.Models;
+using OnlineLibrary.Models.Wishlist;
 using OnlineLibrary.Models.Book;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
 
@@ -14,19 +14,21 @@ namespace OnlineLibrary.Controllers
         private const string InternalServerError = "Internal server error!";
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWishlistService _wishlistService;
 
-        public WishlistController(IUnitOfWork unitOfWork)
+        public WishlistController(IUnitOfWork unitOfWork, IWishlistService wishlistService)
         {
             _unitOfWork = unitOfWork;
+            _wishlistService = wishlistService;
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet]
         [ActionName(nameof(GetWishlistOfUser))]
-        public async Task<IActionResult> GetWishlistOfUser(int userId)
+        public async Task<IActionResult> GetWishlistOfUser([FromQuery] int userId, [FromQuery] int pageNumber = 1)
         {
             try
             {
-                var wishlist = await _unitOfWork.WishlistRepository.GetUserWishlistAsync(userId);
+                var wishlist = await _unitOfWork.WishlistRepository.GetUserWishlistAsync(userId, pageNumber);
                 if (wishlist == null) return NotFound();
 
                 return Json(wishlist);
@@ -37,15 +39,15 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpPost("{userId}")]
-        public async Task<IActionResult> AddWishlistForUser(int userId)
+        [HttpPost]
+        public async Task<IActionResult> AddWishlistForUser([FromQuery] int userId)
         {
             try
             {
                 var user = await _unitOfWork.UserRepository.GetByIdAsync(userId);
                 if (user == null) return NotFound("User not found");
 
-                var existingWishlist = await _unitOfWork.WishlistRepository.GetUserWishlistAsync(userId);
+                var existingWishlist = await _unitOfWork.WishlistRepository.GetUserWishlistWithNoBooksAsync(userId);
                 if (existingWishlist != null) return Conflict("Wishlist already exists for this user");
 
                 var newWishlist = new WishlistModel
@@ -72,22 +74,18 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpPut("{wishlistId}")]
-        public async Task<IActionResult> AddBookToWishlist([FromQuery] int bookId, int wishlistId)
+        [HttpPut]
+        public async Task<IActionResult> AddBookToWishlist([FromQuery] int userId, [FromBody] WishlistDto wishlistDto)
         {
             try
             {
-                var wishlist = await _unitOfWork.WishlistRepository.GetByIdAsync(wishlistId);
-                if (wishlist == null) return NotFound("No wishlist found!");
+                var updatedWishlist = await _wishlistService.UpdateWishlist(userId, wishlistDto);
+                if (updatedWishlist == null) return NotFound();
 
-                var book = await _unitOfWork.BookRepository.GetByIdAsync(bookId);
-                if (book == null) return NotFound("No book found!");
-
-                wishlist.Books.Add(book);
-                _unitOfWork.WishlistRepository.Update(wishlist);
-
+                _unitOfWork.WishlistRepository.Update(updatedWishlist);
                 await _unitOfWork.CommitAsync();
-                return Ok(book);
+
+                return Ok(updatedWishlist);
             }
             catch (DbUpdateException ex)
             {
