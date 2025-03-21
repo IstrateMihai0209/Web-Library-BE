@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\models\\book\\bookmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:models\\book\\bookmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|g:\\facultate\\onlinelibrary licenta\\onlinelibrary\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86427A77-0F3D-470A-B5B1-9ABE2D89DAB6}|OnlineLibrary.csproj|solutionrelative:controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -78,17 +82,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BookController.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\BookController.cs",
               "RelativeDocumentMoniker": "Controllers\\BookController.cs",
               "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\BookController.cs",
               "RelativeToolTip": "Controllers\\BookController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAA0AAAA",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAgwAsAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-03T13:40:53.717Z",
               "IsPinned": true,
@@ -96,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "ReadingHistoryController.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\ReadingHistoryController.cs",
               "RelativeDocumentMoniker": "Controllers\\ReadingHistoryController.cs",
@@ -109,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "WishlistController.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\WishlistController.cs",
               "RelativeDocumentMoniker": "Controllers\\WishlistController.cs",
@@ -122,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ReadBooksController.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\ReadBooksController.cs",
               "RelativeDocumentMoniker": "Controllers\\ReadBooksController.cs",
@@ -135,7 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "UserController.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
@@ -145,6 +149,19 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-18T08:35:28.159Z",
               "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookModel.cs",
+              "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Book\\BookModel.cs",
+              "RelativeDocumentMoniker": "Models\\Book\\BookModel.cs",
+              "ToolTip": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Book\\BookModel.cs",
+              "RelativeToolTip": "Models\\Book\\BookModel.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAuwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-01T21:31:07.483Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -160,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ReadBooksService.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\ReadBooks\\ReadBooksService.cs",
               "RelativeDocumentMoniker": "Models\\ReadBooks\\ReadBooksService.cs",
@@ -172,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ReadBooksRepository.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\ReadBooks\\ReadBooksRepository.cs",
               "RelativeDocumentMoniker": "Models\\Repositories\\ReadBooks\\ReadBooksRepository.cs",
@@ -184,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "IReadBooksRepository.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\ReadBooks\\IReadBooksRepository.cs",
               "RelativeDocumentMoniker": "Models\\Repositories\\ReadBooks\\IReadBooksRepository.cs",
@@ -196,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "IWishlistRepository.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Wishlist\\IWishlistRepository.cs",
               "RelativeDocumentMoniker": "Models\\Repositories\\Wishlist\\IWishlistRepository.cs",
@@ -208,7 +225,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "WishlistRepository.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Wishlist\\WishlistRepository.cs",
               "RelativeDocumentMoniker": "Models\\Repositories\\Wishlist\\WishlistRepository.cs",
@@ -220,7 +237,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "WishlistService.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Wishlist\\WishlistService.cs",
               "RelativeDocumentMoniker": "Models\\Wishlist\\WishlistService.cs",
@@ -232,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "IBookRepository.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Book\\IBookRepository.cs",
               "RelativeDocumentMoniker": "Models\\Repositories\\Book\\IBookRepository.cs",
@@ -244,7 +261,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "IReturnsBookList.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\IReturnsBookList.cs",
               "RelativeDocumentMoniker": "Models\\IReturnsBookList.cs",
@@ -256,7 +273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "ReadingHistoryService.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\ReadingHistory\\ReadingHistoryService.cs",
               "RelativeDocumentMoniker": "Models\\ReadingHistory\\ReadingHistoryService.cs",
@@ -268,7 +285,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "IReadingHistoryRepository.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\ReadingHistory\\IReadingHistoryRepository.cs",
               "RelativeDocumentMoniker": "Models\\Repositories\\ReadingHistory\\IReadingHistoryRepository.cs",
@@ -280,7 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "BookRepository.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\Book\\BookRepository.cs",
               "RelativeDocumentMoniker": "Models\\Repositories\\Book\\BookRepository.cs",
@@ -292,7 +309,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ReadingHistoryRepository.cs",
               "DocumentMoniker": "G:\\Facultate\\OnlineLibrary Licenta\\OnlineLibrary\\Models\\Repositories\\ReadingHistory\\ReadingHistoryRepository.cs",
               "RelativeDocumentMoniker": "Models\\Repositories\\ReadingHistory\\ReadingHistoryRepository.cs",

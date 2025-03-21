@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Book;
 using OnlineLibrary.Models.ReadBooks;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
+using OnlineLibrary.Models.Wishlist;
 
 namespace OnlineLibrary.Controllers
 {
@@ -15,11 +16,13 @@ namespace OnlineLibrary.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IReadBooksService _readBooksService;
+        private readonly IWishlistService _wishlistService;
 
-        public ReadBooksController(IUnitOfWork unitOfWork, IReadBooksService readBooksService)
+        public ReadBooksController(IUnitOfWork unitOfWork, IReadBooksService readBooksService, IWishlistService wishlistService)
         {
             _unitOfWork = unitOfWork;
             _readBooksService = readBooksService;
+            _wishlistService = wishlistService;
         }
 
 
@@ -75,15 +78,19 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("add")]
         public async Task<IActionResult> AddBookToReadSection([FromQuery] int userId, [FromBody] ReadBooksDto readBooksDto)
         {
             try
             {
-                var updatedReadBooksSection = await _readBooksService.UpdateReadBooksByUser(userId, readBooksDto);
+                var updatedReadBooksSection = await _readBooksService.AddToReadBooks(userId, readBooksDto);
                 if (updatedReadBooksSection == null) return NotFound();
 
+                // Removing book from wishlist if it's marked as read
+                var updatedWishlist = await _wishlistService.RemoveFromWishlist(userId, readBooksDto.Books.Last().Id);
+                
                 _unitOfWork.ReadBooksRepository.Update(updatedReadBooksSection);
+                _unitOfWork.WishlistRepository.Update(updatedWishlist);
                 await _unitOfWork.CommitAsync();
 
                 return Ok(updatedReadBooksSection);
@@ -98,21 +105,34 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpDelete("{readBooksId}")]
-        public async Task<IActionResult> RemoveBookFromWishlist([FromQuery] int bookId, int readBooksId)
+        [HttpPut("remove")]
+        public async Task<IActionResult> RemoveBookFromReadSection([FromQuery] int userId, [FromQuery] int bookId)
         {
             try
             {
-                var readBooksModel = await _unitOfWork.ReadBooksRepository.GetByIdAsync(readBooksId);
-                if (readBooksModel == null) return NotFound("No read books section found!");
-
-                var book = await _unitOfWork.BookRepository.GetByIdAsync(bookId);
-                if (book == null) return NotFound("No book found!");
-
-                readBooksModel.Books.Remove(book);
+                var updatedReadBooksSection = await _readBooksService.RemoveFromReadBooks(userId, bookId);
+                if (updatedReadBooksSection == null) return NotFound();
+                
+                _unitOfWork.ReadBooksRepository.Update(updatedReadBooksSection);
                 await _unitOfWork.CommitAsync();
 
-                return NoContent();
+                return Ok(updatedReadBooksSection);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+
+        [HttpGet("is-marked-as-read")]
+        public async Task<IActionResult> IsMarkedAsRead([FromQuery] int userId, [FromQuery] int bookId)
+        {
+            try
+            {
+                var isBookMarkedAsRead = await _readBooksService.IsBookMarkedAsRead(userId, bookId);
+                if (!isBookMarkedAsRead) return NotFound();
+
+                return Ok();
             }
             catch (Exception ex)
             {

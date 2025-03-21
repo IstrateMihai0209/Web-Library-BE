@@ -53,6 +53,21 @@ namespace OnlineLibrary.Models
                     RememberLogin = true,
                     ReturnUrl = ""
                 });
+            
+            modelBuilder.Entity<UserModel>().HasData(
+                new UserModel
+                {
+                    Id = 2,
+                    Name = "Admin2",
+                    Email = "admin2@mail.com",
+                    Password = "secret",
+                    Permission = "Yes",
+                    RoleId = 1,
+                    CreatedAt = new DateTime(2025, 01, 01),
+                    GoogleId = 2,
+                    RememberLogin = true,
+                    ReturnUrl = ""
+                });
         }
     }
 }

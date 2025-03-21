@@ -11,5 +11,7 @@
         void Update(T entity);
 
         Task<bool> DeleteAsync(int id);
+
+        void Detach(T entity);
     }
 }

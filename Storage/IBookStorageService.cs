@@ -4,7 +4,7 @@ namespace OnlineLibrary.Storage
 {
     public interface IBookStorageService
     {
-        public Task UploadBook();
+        public Task UploadBook(IFormFile coverImage, IFormFile textFile);
 
         public Task OpenBook(BookModel book);
 

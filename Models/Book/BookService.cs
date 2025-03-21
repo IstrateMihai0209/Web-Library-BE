@@ -1,4 +1,5 @@
-﻿using OnlineLibrary.Models.Repositories.Book;
+﻿using Extensions;
+using OnlineLibrary.Models.Repositories.Book;
 
 namespace OnlineLibrary.Models.Book
 {
@@ -11,19 +12,42 @@ namespace OnlineLibrary.Models.Book
             _bookRepository = bookRepository;
         }
 
+        public BookModel CreateBookModel(BookDto bookDto)
+        {
+            var path = $"https://weblibrary.blob.core.windows.net/lib-files";
+
+            var bookModel = new BookModel()
+            {
+               Title = bookDto.Title,
+               Author = bookDto.Author,
+               Publisher = bookDto.Publisher,
+               Genre = bookDto.Genre,
+               Description = bookDto.Description,
+               MoreAboutAuthor = bookDto.MoreAboutAuthor,
+               PublishDate = new DateTime(bookDto.PublishYear, 1, 1),
+               CategoryId = 1, //TODO: Determine the category based on some calculations
+               FilePath = $"{path}/{bookDto.TextFile.FileName}{bookDto.TextFile.GetFileExtension()}", 
+               UploadedAt = DateTime.Now,
+               UserId = bookDto.UploaderId,
+               CoverImage = $"{path}/{bookDto.CoverImage.FileName}{bookDto.CoverImage.GetFileExtension()}", 
+            };
+
+            return bookModel;
+        }
+
         public async Task<BookModel> UpdateBook(int id, BookDto bookDto)
         {
             var book = await _bookRepository.GetByIdAsync(id);
             if (book == null) return null;
 
             book.Title = bookDto.Title;
+            book.Author = bookDto.Author;
+            book.Publisher = bookDto.Publisher;
             book.Genre = bookDto.Genre;
             book.Description = bookDto.Description;
-            book.FilePath = bookDto.FilePath;
-            book.PublishDate = bookDto.PublishDate;
-            book.UploadedAt = bookDto.UploadedAt;
-            book.CoverImage = bookDto.CoverImage;
-            book.Popularity = bookDto.Popularity;
+            book.FilePath = ""; //TODO: Determine the file path after the pdf is loaded in Azure
+            book.PublishDate = new DateTime(bookDto.PublishYear, 1, 1);
+            book.CoverImage = ""; //TODO: Determine the file path after the image is loaded in Azure
 
             return book;
         }

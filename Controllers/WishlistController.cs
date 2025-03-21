@@ -74,12 +74,12 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("add-book")]
         public async Task<IActionResult> AddBookToWishlist([FromQuery] int userId, [FromBody] WishlistDto wishlistDto)
         {
             try
             {
-                var updatedWishlist = await _wishlistService.UpdateWishlist(userId, wishlistDto);
+                var updatedWishlist = await _wishlistService.AddToWishlist(userId, wishlistDto);
                 if (updatedWishlist == null) return NotFound();
 
                 _unitOfWork.WishlistRepository.Update(updatedWishlist);
@@ -97,21 +97,38 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpDelete("{wishlistId}")]
-        public async Task<IActionResult> RemoveBookFromWishlist([FromQuery] int bookId, int wishlistId)
+        [HttpPut("remove-book")]
+        public async Task<IActionResult> RemoveBookFromWishlist([FromQuery] int userId, [FromQuery] int bookId)
         {
             try
             {
-                var wishlist = await _unitOfWork.WishlistRepository.GetByIdAsync(wishlistId);
-                if (wishlist == null) return NotFound("No wishlist found!");
-
-                var book = await _unitOfWork.BookRepository.GetByIdAsync(bookId);
-                if (book == null) return NotFound("No book found!");
-
-                wishlist.Books.Remove(book);
+                var updatedWishlist = await _wishlistService.RemoveFromWishlist(userId, bookId);
+                if (updatedWishlist == null) return NotFound();
+                
+                _unitOfWork.WishlistRepository.Update(updatedWishlist);
                 await _unitOfWork.CommitAsync();
 
-                return NoContent();
+                return Ok(updatedWishlist);
+            }
+            catch (DbUpdateException ex)
+            {
+                return Conflict("Entity was modified by another user!");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+        
+        [HttpGet("is-book-in-wishlist")]
+        public async Task<IActionResult> GetBookFromWishlist([FromQuery] int userId, [FromQuery] int bookId)
+        {
+            try
+            {
+                var isBookInWishlist = await _wishlistService.IsBookInWishlist(userId, bookId);
+                if (!isBookInWishlist) return NotFound();
+
+                return Ok();
             }
             catch (Exception ex)
             {

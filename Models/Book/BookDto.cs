@@ -4,18 +4,22 @@
     {
         public string Title { get; set; }
 
+        public string Author { get; set; }
+        
+        public string Publisher { get; set; }
+        
         public string Genre { get; set; }
 
         public string Description { get; set; }
 
-        public int PublishDate { get; set; }
+        public int PublishYear { get; set; }
 
-        public string FilePath { get; set; }
-
-        public DateTime UploadedAt { get; set; }
-
-        public string CoverImage { get; set; }
-
-        public int Popularity { get; set; }
+        public string MoreAboutAuthor { get; set; }
+        
+        public int UploaderId { get; set; }
+        
+        public IFormFile CoverImage { get; set; }
+        
+        public IFormFile TextFile { get; set; }
     }
 }

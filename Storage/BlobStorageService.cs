@@ -1,28 +1,28 @@
 ﻿using Azure;
 using Azure.Storage.Blobs;
+using Extensions;
 
 namespace OnlineLibrary.Storage
 {
     public class BlobStorageService : IFileStorageService
     {
         private readonly BlobServiceClient _blobServiceClient;
+        private readonly BlobContainerClient _blobContainerClient;
         private readonly string _blobContainerName;
-
         
         public BlobStorageService(IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("AzureStorageConnectionString");
             _blobContainerName = configuration["AzureStorage:lib-files"];
-
             _blobServiceClient = new BlobServiceClient(connectionString);
+            _blobContainerClient = _blobServiceClient.GetBlobContainerClient(_blobContainerName);
         }
 
         public string GetUrl(IFile file)
         {
             try
             {
-                var containerClient = _blobServiceClient.GetBlobContainerClient(_blobContainerName);
-                var blobClient = containerClient.GetBlobClient(file.Name);
+                var blobClient = _blobContainerClient.GetBlobClient(file.Name);
                 return blobClient.Uri.AbsoluteUri;
             }
             catch (RequestFailedException ex) when (ex.ErrorCode == "ContainerNotFound")
@@ -35,16 +35,15 @@ namespace OnlineLibrary.Storage
             }
         }
 
-        public async Task<MemoryStream> DownloadFileAsync(IFile file)
+        public async Task<MemoryStream> DownloadFileAsync(IFormFile file)
         {
             try
             {
-                var containerClient = _blobServiceClient.GetBlobContainerClient(_blobContainerName);
-                var blobClient = containerClient.GetBlobClient(file.Name);
+                var blobClient = _blobContainerClient.GetBlobClient(file.FileName);
 
                 if (!await blobClient.ExistsAsync())
                 {
-                    throw new FileNotFoundException("The blob was not found!", file.Name);
+                    throw new FileNotFoundException("The blob was not found!", file.FileName);
                 }
 
                 var memoryStream = new MemoryStream();
@@ -62,16 +61,13 @@ namespace OnlineLibrary.Storage
             }
         }
 
-        public async Task UploadFileAsync(IFile file, bool overwrite = true)
+        public async Task UploadFileAsync(IFormFile file, bool overwrite = true)
         {
             try
             {
-                var containerClient = _blobServiceClient.GetBlobContainerClient(_blobContainerName);
-                var blobClient = containerClient.GetBlobClient(file.Name);
-
-                if (!File.Exists(file.Path)) throw new FileNotFoundException("The file was not found!", file.Path);
-
-                using FileStream uploadFileStream = File.OpenRead(file.Path);
+                var blobClient = _blobContainerClient.GetBlobClient($"{file.FileName}{file.GetFileExtension()}");
+                
+                using var uploadFileStream = file.OpenReadStream();
                 await blobClient.UploadAsync(uploadFileStream, overwrite);
                 uploadFileStream.Close();
             }

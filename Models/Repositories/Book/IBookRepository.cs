@@ -9,5 +9,7 @@ namespace OnlineLibrary.Models.Repositories.Book
         Task<IEnumerable<BookModel>> GetBooksByCategoryAsync(int categoryId);
 
         Task<IEnumerable<BookModel>> GetTopPopularBooksAsync(int pageNumber);
+
+        Task<IEnumerable<BookModel>> GetSimilarBooksAsync(BookModel bookModel);
     }
 }

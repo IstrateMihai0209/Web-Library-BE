@@ -12,7 +12,7 @@ namespace OnlineLibrary.Models.ReadBooks
             _readBooksRepository = readBooksRepository;
         }
 
-        public async Task<ReadBooksModel> UpdateReadBooksByUser(int userId, ReadBooksDto readBooksDto)
+        public async Task<ReadBooksModel> AddToReadBooks(int userId, ReadBooksDto readBooksDto)
         {
             var readBooks = await _readBooksRepository.GetAllReadBooksByUser(userId);
             if (readBooks == null) return null;
@@ -28,6 +28,38 @@ namespace OnlineLibrary.Models.ReadBooks
             }
 
             return readBooks;
+        }
+
+        public async Task<ReadBooksModel> RemoveFromReadBooks(int userId, int bookId)
+        {
+            var readBooks = await _readBooksRepository.GetAllReadBooksByUser(userId);
+            if (readBooks == null) return null;
+            if (readBooks.Books == null) return null;
+
+            foreach (var book in readBooks.Books)
+            {
+                if (book.Id == bookId)
+                {
+                    readBooks.Books.Remove(book);
+                    break;
+                }
+            }
+            
+            return readBooks;
+        }
+
+        public async Task<bool> IsBookMarkedAsRead(int userId, int bookId)
+        {
+            var readBooks = await _readBooksRepository.GetAllReadBooksByUser(userId);
+            if (readBooks == null) return false;
+
+            foreach (var book in readBooks.Books)
+            {
+                if (book.Id != bookId) continue;
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineLibrary.Models;
 
@@ -10,9 +11,11 @@ using OnlineLibrary.Models;
 namespace OnlineLibrary.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250306124036_PublishDateTypeChanged")]
+    partial class PublishDateTypeChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -22,11 +25,6 @@ namespace OnlineLibrary.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
@@ -53,20 +51,10 @@ namespace OnlineLibrary.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MoreAboutAuthor")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("Popularity")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("PublishDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Publisher")
-                        .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("ReadBooksModelId")

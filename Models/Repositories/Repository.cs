@@ -41,5 +41,14 @@ namespace OnlineLibrary.Models.Repositories
             _dbSet.Remove(entity);
             return true;
         }
+
+        public void Detach(T entity)
+        {
+            var entry = _dbSet.Entry(entity);
+            if (entry != null)
+            {
+                entry.State = EntityState.Detached;
+            }
+        }
     }
 }
