@@ -1,23 +1,65 @@
 ﻿using OnlineLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
-using OnlineLibrary.Models.Repositories.User;
+using OnlineLibrary.Models.Repositories.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 
 namespace OnlineLibrary.Controllers
 {
+    [ApiController]
+    [Route("api/user")]
     public class UserController : Controller
     {
-        //private readonly IUserRepository _userRepository;
+        private const int InternalServerErrorCode = 500;
+        private const string InternalServerError = "Internal server error!";
 
-        //public UserController(IUserRepository userRepository)
-        //{
-        //    _userRepository = userRepository;
-        //}
+        private readonly IUnitOfWork _unitOfWork;
 
-        //[HttpPost]
-        //public Task<IActionResult> Add()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public UserController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        [HttpGet]
+        [ActionName(nameof(GetById))]
+        public async Task<IActionResult> GetById([FromQuery] int userId)
+        {
+            try
+            {
+                var user = await _unitOfWork.UserRepository.GetByIdAsync(userId);
+                if (user == null) return NotFound();
+
+                return Json(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] UserModel user)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+
+            try
+            {
+                var createdUser = await _unitOfWork.UserRepository.AddAsync(user);
+                await _unitOfWork.CommitAsync();
+
+                return CreatedAtAction(
+                    nameof(GetById),
+                    new { userId = createdUser.Id },
+                    user);
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(InternalServerErrorCode, "A database error occured!");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
 
         //public IActionResult Login(string returnUrl)
         //{
@@ -40,11 +82,6 @@ namespace OnlineLibrary.Controllers
         //}
 
         //public Task<IActionResult> Logout()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<IActionResult> Profile(int userId)
         //{
         //    throw new NotImplementedException();
         //}

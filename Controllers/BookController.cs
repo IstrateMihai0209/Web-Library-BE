@@ -25,15 +25,18 @@ namespace OnlineLibrary.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload([FromBody] BookModel book)
+        public async Task<IActionResult> Upload([FromForm] BookDto book)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             try
             {
-                var createdBook = await _unitOfWork.BookRepository.AddAsync(book);
+                var bookModel = _bookService.CreateBookModel(book);
+                _bookStorageService.UploadBook(book.CoverImage, book.TextFile);
+                
+                var createdBook = await _unitOfWork.BookRepository.AddAsync(bookModel);
                 await _unitOfWork.CommitAsync();
-
+                
                 return CreatedAtAction(
                     nameof(GetById),
                     new { bookId = createdBook.Id },
@@ -49,9 +52,9 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpGet("{bookId}")]
+        [HttpGet]
         [ActionName(nameof(GetById))]
-        public async Task<IActionResult> GetById(int bookId)
+        public async Task<IActionResult> GetById([FromQuery] int bookId)
         {
             try
             {
@@ -70,8 +73,8 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpGet("category/{categoryId}")]
-        public async Task<IActionResult> ListByCategory(int categoryId)
+        [HttpGet("category")]
+        public async Task<IActionResult> ListByCategory([FromQuery] int categoryId)
         {
             try
             {
@@ -86,13 +89,13 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpGet("uploader/{userId}")]
-        public async Task<IActionResult> ListByUploader(int userId)
+        [HttpGet("uploader")]
+        public async Task<IActionResult> ListByUploader([FromQuery] int userId, [FromQuery] int pageNumber)
         {
             try
             {
-                var books = await _unitOfWork.BookRepository.GetBooksOfUploaderAsync(userId);
-                if (books == null || books.Count() == 0) return NotFound();
+                var books = await _unitOfWork.BookRepository.GetBooksOfUploaderAsync(userId, pageNumber);
+                if (books == null) return NotFound();
 
                 return Json(books);
             }
@@ -108,13 +111,8 @@ namespace OnlineLibrary.Controllers
         //    throw new NotImplementedException();
         //}
 
-        //public async Task<IActionResult> Read(int bookId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        [HttpPut("{bookId}")]
-        public async Task<IActionResult> Edit(int bookId, [FromBody] BookDto bookDto)
+        [HttpPut]
+        public async Task<IActionResult> Edit([FromQuery] int bookId, [FromBody] BookDto bookDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -156,16 +154,35 @@ namespace OnlineLibrary.Controllers
         }
 
         [HttpGet("top-popular")]
-        public async Task<IActionResult> GetNextByPopularity([FromQuery] int count = 40, [FromQuery] int pageNumber = 1)
+        public async Task<IActionResult> GetNextByPopularity([FromQuery] int pageNumber = 1)
         {
             try
             {
-                var books = await _unitOfWork.BookRepository.GetTopPopularBooksAsync(count, pageNumber);
-                if (books == null || books.Count() == 0) return NotFound();
+                var books = await _unitOfWork.BookRepository.GetTopPopularBooksAsync(pageNumber);
+                if (books == null) return NotFound();
 
                 return Json(books);
             }
             catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+
+        [HttpGet("similar-books")]
+        public async Task<IActionResult> GetSimilarBooks([FromQuery] int id)
+        {
+            try
+            {
+                var currentBook = await _unitOfWork.BookRepository.GetByIdAsync(id);
+                if (currentBook == null) return NotFound();
+                
+                var similarBooks = await _unitOfWork.BookRepository.GetSimilarBooksAsync(currentBook);
+                if(similarBooks.Count() == 0) return NotFound();
+
+                return Json(similarBooks);
+            }
+            catch (Exception e)
             {
                 return StatusCode(InternalServerErrorCode, InternalServerError);
             }

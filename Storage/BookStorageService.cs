@@ -29,9 +29,10 @@ namespace OnlineLibrary.Storage
             throw new NotImplementedException();
         }
 
-        public Task UploadBook()
+        public async Task UploadBook(IFormFile coverImage, IFormFile textFile)
         {
-            throw new NotImplementedException();
+            await _fileStorageService.UploadFileAsync(coverImage, true);
+            await _fileStorageService.UploadFileAsync(textFile, true);
         }
     }
 }

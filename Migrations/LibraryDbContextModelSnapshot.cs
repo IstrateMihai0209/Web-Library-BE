@@ -23,6 +23,11 @@ namespace OnlineLibrary.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
@@ -48,11 +53,21 @@ namespace OnlineLibrary.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("MoreAboutAuthor")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Popularity")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PublishDate")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Publisher")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("ReadBooksModelId")
                         .HasColumnType("INTEGER");
@@ -126,7 +141,7 @@ namespace OnlineLibrary.Migrations
                     b.ToTable("Login");
                 });
 
-            modelBuilder.Entity("OnlineLibrary.Models.ReadBooksModel", b =>
+            modelBuilder.Entity("OnlineLibrary.Models.ReadBooks.ReadBooksModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,7 +155,7 @@ namespace OnlineLibrary.Migrations
                     b.ToTable("ReadBooks");
                 });
 
-            modelBuilder.Entity("OnlineLibrary.Models.ReadingHistoryModel", b =>
+            modelBuilder.Entity("OnlineLibrary.Models.ReadingHistory.ReadingHistoryModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -238,10 +253,23 @@ namespace OnlineLibrary.Migrations
                             RememberLogin = true,
                             ReturnUrl = "",
                             RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin2@mail.com",
+                            GoogleId = 2,
+                            Name = "Admin2",
+                            Password = "secret",
+                            Permission = "Yes",
+                            RememberLogin = true,
+                            ReturnUrl = "",
+                            RoleId = 1
                         });
                 });
 
-            modelBuilder.Entity("OnlineLibrary.Models.WishlistModel", b =>
+            modelBuilder.Entity("OnlineLibrary.Models.Wishlist.WishlistModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -261,15 +289,15 @@ namespace OnlineLibrary.Migrations
                         .WithMany("Books")
                         .HasForeignKey("CategoryModelId");
 
-                    b.HasOne("OnlineLibrary.Models.ReadBooksModel", null)
+                    b.HasOne("OnlineLibrary.Models.ReadBooks.ReadBooksModel", null)
                         .WithMany("Books")
                         .HasForeignKey("ReadBooksModelId");
 
-                    b.HasOne("OnlineLibrary.Models.ReadingHistoryModel", null)
+                    b.HasOne("OnlineLibrary.Models.ReadingHistory.ReadingHistoryModel", null)
                         .WithMany("Books")
                         .HasForeignKey("ReadingHistoryModelId");
 
-                    b.HasOne("OnlineLibrary.Models.WishlistModel", null)
+                    b.HasOne("OnlineLibrary.Models.Wishlist.WishlistModel", null)
                         .WithMany("Books")
                         .HasForeignKey("WishlistModelId");
                 });
@@ -279,17 +307,17 @@ namespace OnlineLibrary.Migrations
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("OnlineLibrary.Models.ReadBooksModel", b =>
+            modelBuilder.Entity("OnlineLibrary.Models.ReadBooks.ReadBooksModel", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("OnlineLibrary.Models.ReadingHistoryModel", b =>
+            modelBuilder.Entity("OnlineLibrary.Models.ReadingHistory.ReadingHistoryModel", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("OnlineLibrary.Models.WishlistModel", b =>
+            modelBuilder.Entity("OnlineLibrary.Models.Wishlist.WishlistModel", b =>
                 {
                     b.Navigation("Books");
                 });

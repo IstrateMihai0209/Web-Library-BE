@@ -3,16 +3,21 @@ using OnlineLibrary.Models.Book;
 
 namespace OnlineLibrary.Models.Repositories.Book
 {
-    public class BookRepository : Repository<BookModel>, IBookRepository
+    public class BookRepository : Repository<BookModel>, IBookRepository, IReturnsBookList
     {
-        private const int DefaultBooksPerPage = 40;
+        public int Count => 40;
+        public long PeriodDifference => 1628640000000000;
 
         public BookRepository(LibraryDbContext dbContext) : base(dbContext) { }
 
-        public async Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync(int userId)
+        public async Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync(int userId, int pageNumber)
         {
+            var skip = (pageNumber - 1) * Count;
+
             return await _dbSet
                 .Where(b => b.UserId == userId)
+                .Skip(skip)
+                .Take(Count)
                 .ToListAsync();
         }
 
@@ -23,19 +28,23 @@ namespace OnlineLibrary.Models.Repositories.Book
                 .ToListAsync();
         }
 
-        public Task<IEnumerable<BookModel>> GetBooksByGenreAsync()
+        public async Task<IEnumerable<BookModel>> GetTopPopularBooksAsync(int pageNumber)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<BookModel>> GetTopPopularBooksAsync(int count, int pageNumber)
-        {
-            var skip = (pageNumber - 1) * count;
+            var skip = (pageNumber - 1) * Count;
 
             return await _dbSet
                 .OrderByDescending(b => b.Popularity)
                 .Skip(skip)
-                .Take(count)
+                .Take(Count)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<BookModel>> GetSimilarBooksAsync(BookModel bookModel)
+        {
+            return await _dbSet
+                .Where(book => book.Title != bookModel.Title && (book.Genre == bookModel.Genre || Math.Abs(bookModel.PublishDate.Ticks - book.PublishDate.Ticks) <= PeriodDifference))
+                .Take(12)
+                .OrderBy(book => Math.Abs(bookModel.PublishDate.Ticks - book.PublishDate.Ticks))
                 .ToListAsync();
         }
     }

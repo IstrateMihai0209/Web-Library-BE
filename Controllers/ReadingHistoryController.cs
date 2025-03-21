@@ -1,8 +1,8 @@
 ﻿using OnlineLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
-using OnlineLibrary.Models.Book;
 using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
+using OnlineLibrary.Models.ReadingHistory;
 
 namespace OnlineLibrary.Controllers
 {
@@ -14,19 +14,24 @@ namespace OnlineLibrary.Controllers
         private const string InternalServerError = "Internal server error!";
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IReadingHistoryService _readingHistoryService;
+        
+        private LibraryDbContext _libraryDbContext;
 
-        public ReadingHistoryController(IUnitOfWork unitOfWork)
+        public ReadingHistoryController(IUnitOfWork unitOfWork, IReadingHistoryService readingHistoryService, LibraryDbContext dbContext)
         {
             _unitOfWork = unitOfWork;
+            _readingHistoryService = readingHistoryService;
+            _libraryDbContext = dbContext;
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet]
         [ActionName(nameof(GetByUserId))]
-        public async Task<IActionResult> GetByUserId(int userId)
+        public async Task<IActionResult> GetByUserId([FromQuery] int userId, [FromQuery] int pageNumber = 1)
         {
             try
             {
-                var readingHistory = await _unitOfWork.ReadingHistoryRepository.GetReadingHistoryOfUserAsync(userId);
+                var readingHistory = await _unitOfWork.ReadingHistoryRepository.GetReadingHistoryOfUserAsync(userId, pageNumber);
                 if (readingHistory == null) return NotFound("No reading history");
 
                 return Json(readingHistory);
@@ -37,22 +42,21 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpPost("{userId}")]
-        public async Task<IActionResult> Add(int userId)
+        [HttpPost]
+        public async Task<IActionResult> Add([FromQuery] int userId)
         {
             try
             {
                 var user = await _unitOfWork.UserRepository.GetByIdAsync(userId);
                 if (user == null) return NotFound("User not found");
 
-                var existingReadingHistory = await _unitOfWork.ReadingHistoryRepository.GetReadingHistoryOfUserAsync(userId);
+                var existingReadingHistory = await _unitOfWork.ReadingHistoryRepository.GetReadingHistoryOfUserWithoutBooksAsync(userId);
                 if (existingReadingHistory != null) return Conflict("Reading history already exists for this user");
 
                 var newReadingHistory = new ReadingHistoryModel
                 {
                     UserId = userId,
                     AccessDate = DateTime.Now,
-                    Books = new List<BookModel> { }
                 };
 
                 await _unitOfWork.ReadingHistoryRepository.AddAsync(newReadingHistory);
@@ -66,6 +70,32 @@ namespace OnlineLibrary.Controllers
             catch (DbUpdateException ex)
             {
                 return StatusCode(InternalServerErrorCode, "A database error occured!");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+
+
+        [HttpPut("read")]
+        public async Task<IActionResult> Read([FromQuery] int userId, [FromBody] ReadingHistoryDto readingHistoryDto)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            try
+            {                   
+                var updatedReadingHistory = await _readingHistoryService.UpdateReadingHistory(userId, readingHistoryDto);
+                if (updatedReadingHistory == null) return NotFound();
+
+                _unitOfWork.ReadingHistoryRepository.Update(updatedReadingHistory);
+                await _unitOfWork.CommitAsync();
+                 
+                return Ok(updatedReadingHistory);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Conflict("Entity was modified by another user!");
             }
             catch (Exception ex)
             {

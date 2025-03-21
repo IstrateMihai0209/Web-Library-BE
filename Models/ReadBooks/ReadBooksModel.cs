@@ -1,9 +1,9 @@
 ﻿using OnlineLibrary.Models.Book;
 using System.ComponentModel.DataAnnotations;
 
-namespace OnlineLibrary.Models
+namespace OnlineLibrary.Models.ReadBooks
 {
-    public class WishlistModel
+    public class ReadBooksModel
     {
         [Key]
         public int Id { get; set; }
@@ -11,6 +11,6 @@ namespace OnlineLibrary.Models
         [Required]
         public int UserId { get; set; }
 
-        public ICollection<BookModel> Books { get; set; }
+        public ICollection<BookModel> Books { get; set; } = new List<BookModel>();
     }
 }

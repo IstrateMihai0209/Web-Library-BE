@@ -10,6 +10,9 @@ using OnlineLibrary.Models.Repositories.ReadBooks;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
 using OnlineLibrary.Models.Repositories.ReadingHistory;
 using OnlineLibrary.Storage;
+using OnlineLibrary.Models.ReadingHistory;
+using OnlineLibrary.Models.Wishlist;
+using OnlineLibrary.Models.ReadBooks;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -40,19 +43,35 @@ builder.Services.AddDbContext<LibraryDbContext>(options =>
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IReadingHistoryRepository, ReadingHistoryRepository>();
+builder.Services.AddScoped<IReadingHistoryService, ReadingHistoryService>();
+
+builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
+builder.Services.AddScoped<IWishlistService, WishlistService>();
+
+builder.Services.AddScoped<IReadBooksRepository, ReadBooksRepository>();
+builder.Services.AddScoped<IReadBooksService, ReadBooksService>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
-builder.Services.AddScoped<IReadBooksRepository, ReadBooksRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IBookStorageService, BookStorageService>();
 builder.Services.AddScoped<IFileStorageService, BlobStorageService>();
 
 var app = builder.Build();
 
-if(app.Environment.IsDevelopment())
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("/swagger");
+        return;
+    }
+    await next();
+});
+
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

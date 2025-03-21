@@ -4,8 +4,8 @@
     {
         string GetUrl(IFile file);
 
-        Task<MemoryStream> DownloadFileAsync(IFile file);
+        Task<MemoryStream> DownloadFileAsync(IFormFile file);
 
-        Task UploadFileAsync(IFile file, bool overwrite);
+        Task UploadFileAsync(IFormFile file, bool overwrite);
     }
 }
