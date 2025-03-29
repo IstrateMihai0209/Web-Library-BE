@@ -126,7 +126,7 @@ namespace OnlineLibrary.Controllers
             try
             {
                 var isBookInWishlist = await _wishlistService.IsBookInWishlist(userId, bookId);
-                if (!isBookInWishlist) return NotFound();
+                if (!isBookInWishlist) return NoContent();
 
                 return Ok();
             }

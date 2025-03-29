@@ -9,5 +9,7 @@ namespace OnlineLibrary.Storage
         public Task OpenBook(BookModel book);
 
         public string GetBookCoverUrl(BookModel book);
+
+        public Task DeleteBook(string bookTitle);
     }
 }

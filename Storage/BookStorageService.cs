@@ -34,5 +34,11 @@ namespace OnlineLibrary.Storage
             await _fileStorageService.UploadFileAsync(coverImage, true);
             await _fileStorageService.UploadFileAsync(textFile, true);
         }
+
+        public async Task DeleteBook(string bookTitle)
+        {
+            await _fileStorageService.DeleteFileAsync($"{bookTitle}.jpg");
+            await _fileStorageService.DeleteFileAsync($"{bookTitle}.pdf");
+        }
     }
 }

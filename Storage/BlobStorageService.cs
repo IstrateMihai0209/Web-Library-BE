@@ -84,5 +84,22 @@ namespace OnlineLibrary.Storage
                 throw new Exception("An error occurred while uploading the file!", ex);
             }
         }
+
+        public async Task DeleteFileAsync(string blobName)
+        {
+            try
+            {
+                var blobClient = _blobContainerClient.GetBlobClient(blobName);
+                await blobClient.DeleteIfExistsAsync();
+            }
+            catch (RequestFailedException ex) when (ex.ErrorCode == "ContainerNotFound")
+            {
+                throw new InvalidOperationException("The specified container does not exist!", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the file!", ex);
+            }
+        }
     }
 }
