@@ -12,14 +12,14 @@
 
         public string Description { get; set; }
 
-        public int PublishYear { get; set; }
+        public DateTime PublishDate { get; set; }
 
         public string MoreAboutAuthor { get; set; }
         
         public int UploaderId { get; set; }
         
-        public IFormFile CoverImage { get; set; }
+        public IFormFile? CoverImage { get; set; }
         
-        public IFormFile TextFile { get; set; }
+        public IFormFile? TextFile { get; set; }
     }
 }

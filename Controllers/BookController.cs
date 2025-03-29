@@ -32,7 +32,7 @@ namespace OnlineLibrary.Controllers
             try
             {
                 var bookModel = _bookService.CreateBookModel(book);
-                _bookStorageService.UploadBook(book.CoverImage, book.TextFile);
+                await _bookStorageService.UploadBook(book.CoverImage, book.TextFile);
                 
                 var createdBook = await _unitOfWork.BookRepository.AddAsync(bookModel);
                 await _unitOfWork.CommitAsync();
@@ -40,7 +40,7 @@ namespace OnlineLibrary.Controllers
                 return CreatedAtAction(
                     nameof(GetById),
                     new { bookId = createdBook.Id },
-                    book);
+                    createdBook);
             }
             catch (DbUpdateException ex)
             {
@@ -136,14 +136,17 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpDelete("{bookId}")]
-        public async Task<IActionResult> Delete(int bookId)
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromQuery] int bookId)
         {
             try
             {
+                var book = await _unitOfWork.BookRepository.GetByIdAsync(bookId);
                 var success = await _unitOfWork.BookRepository.DeleteAsync(bookId);
                 if (!success) return NotFound();
 
+                await _bookStorageService.DeleteBook(book.Title.ToLower());
+                
                 await _unitOfWork.CommitAsync();
                 return NoContent();
             }

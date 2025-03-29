@@ -7,5 +7,7 @@
         Task<MemoryStream> DownloadFileAsync(IFormFile file);
 
         Task UploadFileAsync(IFormFile file, bool overwrite);
+
+        Task DeleteFileAsync(string blobName);
     }
 }

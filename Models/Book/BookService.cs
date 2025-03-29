@@ -24,7 +24,7 @@ namespace OnlineLibrary.Models.Book
                Genre = bookDto.Genre,
                Description = bookDto.Description,
                MoreAboutAuthor = bookDto.MoreAboutAuthor,
-               PublishDate = new DateTime(bookDto.PublishYear, 1, 1),
+               PublishDate = bookDto.PublishDate,
                CategoryId = 1, //TODO: Determine the category based on some calculations
                FilePath = $"{path}/{bookDto.TextFile.FileName}{bookDto.TextFile.GetFileExtension()}", 
                UploadedAt = DateTime.Now,
@@ -45,9 +45,9 @@ namespace OnlineLibrary.Models.Book
             book.Publisher = bookDto.Publisher;
             book.Genre = bookDto.Genre;
             book.Description = bookDto.Description;
-            book.FilePath = ""; //TODO: Determine the file path after the pdf is loaded in Azure
-            book.PublishDate = new DateTime(bookDto.PublishYear, 1, 1);
-            book.CoverImage = ""; //TODO: Determine the file path after the image is loaded in Azure
+            //book.FilePath = ""; //TODO: Determine the file path after the pdf is loaded in Azure
+            book.PublishDate = bookDto.PublishDate;
+            //book.CoverImage = ""; //TODO: Determine the file path after the image is loaded in Azure
 
             return book;
         }

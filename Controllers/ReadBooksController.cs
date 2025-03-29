@@ -87,10 +87,10 @@ namespace OnlineLibrary.Controllers
                 if (updatedReadBooksSection == null) return NotFound();
 
                 // Removing book from wishlist if it's marked as read
-                var updatedWishlist = await _wishlistService.RemoveFromWishlist(userId, readBooksDto.Books.Last().Id);
+                // var updatedWishlist = await _wishlistService.RemoveFromWishlist(userId, readBooksDto.Books.Last().Id);
                 
                 _unitOfWork.ReadBooksRepository.Update(updatedReadBooksSection);
-                _unitOfWork.WishlistRepository.Update(updatedWishlist);
+                // _unitOfWork.WishlistRepository.Update(updatedWishlist);
                 await _unitOfWork.CommitAsync();
 
                 return Ok(updatedReadBooksSection);
@@ -130,7 +130,7 @@ namespace OnlineLibrary.Controllers
             try
             {
                 var isBookMarkedAsRead = await _readBooksService.IsBookMarkedAsRead(userId, bookId);
-                if (!isBookMarkedAsRead) return NotFound();
+                if (!isBookMarkedAsRead) return NoContent();
 
                 return Ok();
             }
