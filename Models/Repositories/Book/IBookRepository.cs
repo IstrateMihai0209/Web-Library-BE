@@ -11,5 +11,7 @@ namespace OnlineLibrary.Models.Repositories.Book
         Task<IEnumerable<BookModel>> GetTopPopularBooksAsync(int pageNumber);
 
         Task<IEnumerable<BookModel>> GetSimilarBooksAsync(BookModel bookModel);
+
+        Task<IEnumerable<BookModel>> SearchBooks(string searchQuery, Dictionary<string, List<string>> filters, int pageNumber);
     }
 }

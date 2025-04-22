@@ -105,12 +105,6 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Search(string searchQuery)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         [HttpPut]
         public async Task<IActionResult> Edit([FromQuery] int bookId, [FromBody] BookDto bookDto)
         {
@@ -184,6 +178,21 @@ namespace OnlineLibrary.Controllers
                 if(similarBooks.Count() == 0) return NotFound();
 
                 return Json(similarBooks);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+        
+        [HttpPost("search")]
+        public async Task<IActionResult> Search([FromQuery] string? searchQuery, [FromBody] Dictionary<string, List<string>> filters, [FromQuery] int pageNumber = 1)
+        {
+            try
+            {
+                var books = await _unitOfWork.BookRepository.SearchBooks(searchQuery, filters, pageNumber);
+                if (books == null || books.Count() == 0) return NoContent();
+                return Ok(books);
             }
             catch (Exception e)
             {
