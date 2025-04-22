@@ -168,3 +168,6 @@ G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Azure.Storage.
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.ClientModel.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.IO.Hashing.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.Memory.Data.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\OnlineLibrary.staticwebassets.endpoints.json
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\obj\Debug\net8.0\staticwebassets\msbuild.OnlineLibrary.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
