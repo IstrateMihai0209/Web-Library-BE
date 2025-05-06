@@ -38,8 +38,8 @@ builder.Services.AddCors(options =>
                       policy =>
                       {
                           policy.WithOrigins(
-                              "http://localhost:4200", 
-                              "https://white-pond-065378103.6.azurestaticapps.net"
+                              builder.Configuration["Frontend:Url"], 
+                              builder.Configuration["Frontend:DeployedUrl"]
                               )
                               .AllowAnyHeader()
                               .AllowAnyMethod()
