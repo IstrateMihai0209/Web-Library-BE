@@ -14,8 +14,6 @@ using OnlineLibrary.Models.Repositories.ReadingHistory;
 using OnlineLibrary.Models.ReadingHistory;
 using OnlineLibrary.Models.ReadBooks;
 using OnlineLibrary.Models.Wishlist;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using OnlineLibrary;
 
@@ -72,9 +70,6 @@ builder.Services.AddAuthentication().AddGoogle(options =>
     options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
     options.SaveTokens = true;
 });
-
-var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-var key = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"]!);
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

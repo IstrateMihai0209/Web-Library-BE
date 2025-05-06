@@ -5003,6 +5003,88 @@
           "Value": "sha256-OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I="
         }
       ]
+    },
+    {
+      "Route": "web.config",
+      "AssetFile": "web.config",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "635"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yzgN7Y6PvyUNHrNFWyFrp8cLLHHkBEbWRWHjI54sch8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 May 2025 16:11:12 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yzgN7Y6PvyUNHrNFWyFrp8cLLHHkBEbWRWHjI54sch8="
+        }
+      ]
+    },
+    {
+      "Route": "web.r0n9wjtt21.config",
+      "AssetFile": "web.config",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "635"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yzgN7Y6PvyUNHrNFWyFrp8cLLHHkBEbWRWHjI54sch8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 May 2025 16:11:12 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r0n9wjtt21"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yzgN7Y6PvyUNHrNFWyFrp8cLLHHkBEbWRWHjI54sch8="
+        },
+        {
+          "Name": "label",
+          "Value": "web.config"
+        }
+      ]
     }
   ]
 }
