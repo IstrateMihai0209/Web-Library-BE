@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlineLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e499adb8ebda85f5da6902b71fd279e43911ff3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+227d335b1584f411ab83e9f5a9316b75ef060dda")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlineLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlineLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

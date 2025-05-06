@@ -39,7 +39,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins(builder.Configuration["Frontend:Url"])
+                          policy.WithOrigins(
+                              builder.Configuration["Frontend:Url"], 
+                              builder.Configuration["Frontend:DeployedUrl"]
+                              )
                               .AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowCredentials(); // Required for cookies
@@ -54,7 +57,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<LibraryDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     {
