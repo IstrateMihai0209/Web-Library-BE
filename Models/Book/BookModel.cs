@@ -39,9 +39,6 @@ namespace OnlineLibrary.Models.Book
         [JsonPropertyName("publishDate")]
         public DateTime PublishDate { get; set; }
 
-        [JsonPropertyName("categoryId")]
-        public int CategoryId { get; set; }
-
         [Required]
         [JsonPropertyName("filePath")]
         [StringLength(200)]
@@ -53,7 +50,7 @@ namespace OnlineLibrary.Models.Book
 
         [Required]
         [JsonPropertyName("userId")]
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
 
         [JsonPropertyName("coverImage")]
         public string CoverImage { get; set; }

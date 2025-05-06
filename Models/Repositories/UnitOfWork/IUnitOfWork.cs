@@ -1,7 +1,6 @@
 ﻿using OnlineLibrary.Models.Repositories.Book;
 using OnlineLibrary.Models.Repositories.ReadBooks;
 using OnlineLibrary.Models.Repositories.ReadingHistory;
-using OnlineLibrary.Models.Repositories.User;
 using OnlineLibrary.Models.Repositories.Wishlist;
 
 namespace OnlineLibrary.Models.Repositories.UnitOfWork
@@ -15,8 +14,6 @@ namespace OnlineLibrary.Models.Repositories.UnitOfWork
         IBookRepository BookRepository { get; }
 
         IReadingHistoryRepository ReadingHistoryRepository { get; }
-
-        IUserRepository UserRepository { get; }
 
         IWishlistRepository WishlistRepository { get; }
 

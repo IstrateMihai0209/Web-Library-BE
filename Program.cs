@@ -1,32 +1,48 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using OnlineLibrary.Models;
+using OnlineLibrary.Storage;
 using OnlineLibrary.Models.Book;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Repositories.Book;
-using OnlineLibrary.Models.Repositories.User;
 using OnlineLibrary.Models.Repositories.Role;
-using OnlineLibrary.Models.Repositories.Category;
 using OnlineLibrary.Models.Repositories.Wishlist;
 using OnlineLibrary.Models.Repositories.ReadBooks;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
 using OnlineLibrary.Models.Repositories.ReadingHistory;
-using OnlineLibrary.Storage;
 using OnlineLibrary.Models.ReadingHistory;
-using OnlineLibrary.Models.Wishlist;
 using OnlineLibrary.Models.ReadBooks;
+using OnlineLibrary.Models.Wishlist;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using OnlineLibrary;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.SameSite = SameSiteMode.Lax;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    options.Events.OnRedirectToLogin = context =>
+    {
+        context.Response.StatusCode = 401;
+        return Task.CompletedTask;
+    };
+});
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:4200")
-                            .AllowAnyHeader()
-                            .AllowAnyMethod();
-                         
+                          policy.WithOrigins(builder.Configuration["Frontend:Url"])
+                              .AllowAnyHeader()
+                              .AllowAnyMethod()
+                              .AllowCredentials(); // Required for cookies
                       });
 });
 
@@ -40,6 +56,38 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<LibraryDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+    {
+        //options.SignIn.RequireConfirmedEmail = true;
+    })
+    .AddEntityFrameworkStores<LibraryDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication().AddGoogle(options =>
+{
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"]; 
+    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    options.SaveTokens = true;
+});
+
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+var key = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"]!);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = "auth-token";
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SameSite = SameSiteMode.Lax;
+        options.ExpireTimeSpan = TimeSpan.FromDays(1);
+        options.SlidingExpiration = true;
+        options.Events.OnRedirectToLogin = context =>
+        {
+            context.Response.StatusCode = 401;
+            return Task.CompletedTask;
+        };
+    });
+
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 
@@ -52,12 +100,12 @@ builder.Services.AddScoped<IWishlistService, WishlistService>();
 builder.Services.AddScoped<IReadBooksRepository, ReadBooksRepository>();
 builder.Services.AddScoped<IReadBooksService, ReadBooksService>();
 
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IBookStorageService, BookStorageService>();
 builder.Services.AddScoped<IFileStorageService, BlobStorageService>();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 
@@ -93,11 +141,9 @@ app.UseRouting();
 
 app.UseCors(MyAllowSpecificOrigins);
 
-app.UseAuthorization();
+app.UseAuthentication();
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseAuthorization();
 
 app.MapControllers();
 

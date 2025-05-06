@@ -8,8 +8,7 @@ namespace OnlineLibrary.Models.ReadingHistory
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
 
         public List<BookModel> Books { get; set; } = new List<BookModel>();
 

@@ -4,10 +4,10 @@ namespace OnlineLibrary.Models.Repositories.ReadingHistory
 {
     public interface IReadingHistoryRepository : IRepository<ReadingHistoryModel>
     {
-        Task<ReadingHistoryModel> GetUserReadingHistoryWithAllBooksAsync(int userId);
+        Task<ReadingHistoryModel> GetOrCreateUserReadingHistoryWithAllBooksAsync(string userId);
 
-        Task<ReadingHistoryModel> GetReadingHistoryOfUserWithoutBooksAsync(int userId);
+        Task<ReadingHistoryModel> GetReadingHistoryOfUserWithoutBooksAsync(string userId);
 
-        Task<ReadingHistoryModel> GetReadingHistoryOfUserAsync(int userId, int pageNubmer);
+        Task<ReadingHistoryModel> GetOrCreateReadingHistoryOfUserAsync(string userId, int pageNubmer);
     }
 }

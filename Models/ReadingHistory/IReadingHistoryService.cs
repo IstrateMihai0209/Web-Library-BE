@@ -2,6 +2,6 @@
 {
     public interface IReadingHistoryService
     {
-        Task<ReadingHistoryModel> UpdateReadingHistory(int userId, ReadingHistoryDto readingHistoryDto);
+        Task<ReadingHistoryModel> UpdateReadingHistory(string userId, ReadingHistoryDto readingHistoryDto);
     }
 }

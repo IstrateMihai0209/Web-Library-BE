@@ -12,9 +12,9 @@ namespace OnlineLibrary.Models.Wishlist
             _wishlistRepository = wishlistRepository;
         }
 
-        public async Task<WishlistModel> AddToWishlist(int userId, WishlistDto wishlistDto)
+        public async Task<WishlistModel> AddToWishlist(string userId, WishlistDto wishlistDto)
         {
-            var wishlist = await _wishlistRepository.GetUserWishlistWithAllBooksAsync(userId);
+            var wishlist = await _wishlistRepository.GetOrCreateUserWishlistWithAllBooksAsync(userId);
             if (wishlist == null) return null;
 
             if (wishlist.Books == null) wishlist.Books = new List<BookModel>();
@@ -30,9 +30,9 @@ namespace OnlineLibrary.Models.Wishlist
             return wishlist;
         }
 
-        public async Task<WishlistModel> RemoveFromWishlist(int userId, int bookId)
+        public async Task<WishlistModel> RemoveFromWishlist(string userId, int bookId)
         {
-            var wishlist = await _wishlistRepository.GetUserWishlistWithAllBooksAsync(userId);
+            var wishlist = await _wishlistRepository.GetOrCreateUserWishlistWithAllBooksAsync(userId);
             if (wishlist == null) return null;
             if (wishlist.Books == null) return null;
 
@@ -48,9 +48,9 @@ namespace OnlineLibrary.Models.Wishlist
             return wishlist;
         }
 
-        public async Task<bool> IsBookInWishlist(int userId, int bookId)
+        public async Task<bool> IsBookInWishlist(string userId, int bookId)
         {
-            var wishlist = await _wishlistRepository.GetUserWishlistWithAllBooksAsync(userId);
+            var wishlist = await _wishlistRepository.GetOrCreateUserWishlistWithAllBooksAsync(userId);
             if (wishlist == null) return false;
 
             foreach (var book in wishlist.Books)

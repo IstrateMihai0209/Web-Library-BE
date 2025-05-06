@@ -4,9 +4,7 @@ namespace OnlineLibrary.Models.Repositories.Book
 {
     public interface IBookRepository : IRepository<BookModel>
     {
-        Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync(int userId, int pageNumber);
-
-        Task<IEnumerable<BookModel>> GetBooksByCategoryAsync(int categoryId);
+        Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync(string userId, int pageNumber);
 
         Task<IEnumerable<BookModel>> GetTopPopularBooksAsync(int pageNumber);
 

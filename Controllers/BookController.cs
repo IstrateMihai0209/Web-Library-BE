@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineLibrary.Models.Book;
 using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
@@ -24,6 +25,7 @@ namespace OnlineLibrary.Controllers
             _bookStorageService = bookStorageService;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Upload([FromForm] BookDto book)
         {
@@ -73,24 +75,8 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpGet("category")]
-        public async Task<IActionResult> ListByCategory([FromQuery] int categoryId)
-        {
-            try
-            {
-                var books = await _unitOfWork.BookRepository.GetBooksByCategoryAsync(categoryId);
-                if (books == null || books.Count() == 0) return NotFound();
-
-                return Json(books);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(InternalServerErrorCode, InternalServerError);
-            }
-        }
-
         [HttpGet("uploader")]
-        public async Task<IActionResult> ListByUploader([FromQuery] int userId, [FromQuery] int pageNumber)
+        public async Task<IActionResult> ListByUploader([FromQuery] string userId, [FromQuery] int pageNumber)
         {
             try
             {
@@ -105,6 +91,7 @@ namespace OnlineLibrary.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Edit([FromQuery] int bookId, [FromBody] BookDto bookDto)
         {
@@ -130,6 +117,7 @@ namespace OnlineLibrary.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> Delete([FromQuery] int bookId)
         {

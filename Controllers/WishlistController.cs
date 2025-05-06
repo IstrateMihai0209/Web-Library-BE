@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Wishlist;
 using OnlineLibrary.Models.Book;
@@ -23,13 +25,14 @@ namespace OnlineLibrary.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [ActionName(nameof(GetWishlistOfUser))]
-        public async Task<IActionResult> GetWishlistOfUser([FromQuery] int userId, [FromQuery] int pageNumber = 1)
+        public async Task<IActionResult> GetWishlistOfUser([FromQuery] string userId, [FromQuery] int pageNumber = 1)
         {
             try
             {
-                var wishlist = await _unitOfWork.WishlistRepository.GetUserWishlistAsync(userId, pageNumber);
-                if (wishlist == null) return NotFound();
+                var wishlist = await _unitOfWork.WishlistRepository.GetOrCreateUserWishlistAsync(userId, pageNumber);
+                await _unitOfWork.CommitAsync();
 
                 return Json(wishlist);
             }
@@ -39,43 +42,9 @@ namespace OnlineLibrary.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddWishlistForUser([FromQuery] int userId)
-        {
-            try
-            {
-                var user = await _unitOfWork.UserRepository.GetByIdAsync(userId);
-                if (user == null) return NotFound("User not found");
-
-                var existingWishlist = await _unitOfWork.WishlistRepository.GetUserWishlistWithNoBooksAsync(userId);
-                if (existingWishlist != null) return Conflict("Wishlist already exists for this user");
-
-                var newWishlist = new WishlistModel
-                {
-                    UserId = userId,
-                    Books = new List<BookModel>()
-                };
-
-                await _unitOfWork.WishlistRepository.AddAsync(newWishlist);
-                await _unitOfWork.CommitAsync();
-
-                return CreatedAtAction(
-                    nameof(GetWishlistOfUser),
-                    new { userId = user.Id },
-                    newWishlist);
-            }
-            catch (DbUpdateException ex)
-            {
-                return StatusCode(InternalServerErrorCode, "A database error occured!");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(InternalServerErrorCode, InternalServerError);
-            }
-        }
-
+        [Authorize]
         [HttpPut("add-book")]
-        public async Task<IActionResult> AddBookToWishlist([FromQuery] int userId, [FromBody] WishlistDto wishlistDto)
+        public async Task<IActionResult> AddBookToWishlist([FromQuery] string userId, [FromBody] WishlistDto wishlistDto)
         {
             try
             {
@@ -97,8 +66,9 @@ namespace OnlineLibrary.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("remove-book")]
-        public async Task<IActionResult> RemoveBookFromWishlist([FromQuery] int userId, [FromQuery] int bookId)
+        public async Task<IActionResult> RemoveBookFromWishlist([FromQuery] string userId, [FromQuery] int bookId)
         {
             try
             {
@@ -120,8 +90,9 @@ namespace OnlineLibrary.Controllers
             }
         }
         
+        [Authorize]
         [HttpGet("is-book-in-wishlist")]
-        public async Task<IActionResult> GetBookFromWishlist([FromQuery] int userId, [FromQuery] int bookId)
+        public async Task<IActionResult> GetBookFromWishlist([FromQuery] string userId, [FromQuery] int bookId)
         {
             try
             {

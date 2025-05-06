@@ -4,10 +4,10 @@ namespace OnlineLibrary.Models.Repositories.ReadBooks
 {
     public interface IReadBooksRepository : IRepository<ReadBooksModel>
     {
-        Task<ReadBooksModel> GetAllReadBooksByUser(int userId);
+        Task<ReadBooksModel> GetOrCreateAllReadBooksByUser(string userId);
 
-        Task<ReadBooksModel> GetReadBooksSectionByUser(int userId);
+        Task<ReadBooksModel> GetReadBooksSectionByUser(string userId);
 
-        Task<ReadBooksModel> GetReadBooksByUser(int userId, int pageNumber);
+        Task<ReadBooksModel> GetOrCreateReadBooksByUser(string userId, int pageNumber);
     }
 }

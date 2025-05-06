@@ -13,9 +13,9 @@ namespace OnlineLibrary.Models.ReadingHistory
             _readingHistoryRepository = readingHistoryRepository;
         }
 
-        public async Task<ReadingHistoryModel> UpdateReadingHistory(int userId, ReadingHistoryDto readingHistoryDto)
+        public async Task<ReadingHistoryModel> UpdateReadingHistory(string userId, ReadingHistoryDto readingHistoryDto)
         {
-            var readingHistory = await _readingHistoryRepository.GetUserReadingHistoryWithAllBooksAsync(userId);
+            var readingHistory = await _readingHistoryRepository.GetOrCreateUserReadingHistoryWithAllBooksAsync(userId);
             if (readingHistory == null) return null;
 
             if (readingHistory.Books == null) readingHistory.Books = new List<BookModel>();

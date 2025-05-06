@@ -16,7 +16,7 @@
 
         public string MoreAboutAuthor { get; set; }
         
-        public int UploaderId { get; set; }
+        public string UploaderId { get; set; }
         
         public IFormFile? CoverImage { get; set; }
         

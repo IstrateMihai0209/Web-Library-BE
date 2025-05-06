@@ -11,7 +11,7 @@ namespace OnlineLibrary.Models.Repositories.Book
 
         public BookRepository(LibraryDbContext dbContext) : base(dbContext) { }
 
-        public async Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync(int userId, int pageNumber)
+        public async Task<IEnumerable<BookModel>> GetBooksOfUploaderAsync(string userId, int pageNumber)
         {
             var skip = (pageNumber - 1) * Count;
 
@@ -19,13 +19,6 @@ namespace OnlineLibrary.Models.Repositories.Book
                 .Where(b => b.UserId == userId)
                 .Skip(skip)
                 .Take(Count)
-                .ToListAsync();
-        }
-
-        public async Task<IEnumerable<BookModel>> GetBooksByCategoryAsync(int categoryId)
-        {
-            return await _dbSet
-                .Where(b => b.CategoryId == categoryId)
                 .ToListAsync();
         }
 

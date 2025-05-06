@@ -25,7 +25,6 @@ namespace OnlineLibrary.Models.Book
                Description = bookDto.Description,
                MoreAboutAuthor = bookDto.MoreAboutAuthor,
                PublishDate = bookDto.PublishDate,
-               CategoryId = 1, //TODO: Determine the category based on some calculations
                FilePath = $"{path}/{bookDto.TextFile.FileName}{bookDto.TextFile.GetFileExtension()}", 
                UploadedAt = DateTime.Now,
                UserId = bookDto.UploaderId,

@@ -1,4 +1,6 @@
-﻿using OnlineLibrary.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using OnlineLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Models.Repositories.UnitOfWork;
@@ -15,23 +17,22 @@ namespace OnlineLibrary.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IReadingHistoryService _readingHistoryService;
-        
-        private LibraryDbContext _libraryDbContext;
 
-        public ReadingHistoryController(IUnitOfWork unitOfWork, IReadingHistoryService readingHistoryService, LibraryDbContext dbContext)
+        public ReadingHistoryController(
+            IUnitOfWork unitOfWork,
+            IReadingHistoryService readingHistoryService)
         {
             _unitOfWork = unitOfWork;
             _readingHistoryService = readingHistoryService;
-            _libraryDbContext = dbContext;
         }
 
         [HttpGet]
         [ActionName(nameof(GetByUserId))]
-        public async Task<IActionResult> GetByUserId([FromQuery] int userId, [FromQuery] int pageNumber = 1)
+        public async Task<IActionResult> GetByUserId([FromQuery] string userId, [FromQuery] int pageNumber = 1)
         {
             try
             {
-                var readingHistory = await _unitOfWork.ReadingHistoryRepository.GetReadingHistoryOfUserAsync(userId, pageNumber);
+                var readingHistory = await _unitOfWork.ReadingHistoryRepository.GetOrCreateReadingHistoryOfUserAsync(userId, pageNumber);
                 if (readingHistory == null) return NotFound("No reading history");
 
                 return Json(readingHistory);
@@ -41,45 +42,10 @@ namespace OnlineLibrary.Controllers
                 return StatusCode(InternalServerErrorCode, InternalServerError);
             }
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Add([FromQuery] int userId)
-        {
-            try
-            {
-                var user = await _unitOfWork.UserRepository.GetByIdAsync(userId);
-                if (user == null) return NotFound("User not found");
-
-                var existingReadingHistory = await _unitOfWork.ReadingHistoryRepository.GetReadingHistoryOfUserWithoutBooksAsync(userId);
-                if (existingReadingHistory != null) return Conflict("Reading history already exists for this user");
-
-                var newReadingHistory = new ReadingHistoryModel
-                {
-                    UserId = userId,
-                    AccessDate = DateTime.Now,
-                };
-
-                await _unitOfWork.ReadingHistoryRepository.AddAsync(newReadingHistory);
-                await _unitOfWork.CommitAsync();
-
-                return CreatedAtAction(
-                    nameof(GetByUserId),
-                    new { userId = user.Id },
-                    newReadingHistory);
-            }
-            catch (DbUpdateException ex)
-            {
-                return StatusCode(InternalServerErrorCode, "A database error occured!");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(InternalServerErrorCode, InternalServerError);
-            }
-        }
-
-
+        
+        [Authorize]
         [HttpPut("read")]
-        public async Task<IActionResult> Read([FromQuery] int userId, [FromBody] ReadingHistoryDto readingHistoryDto)
+        public async Task<IActionResult> Read([FromQuery] string userId, [FromBody] ReadingHistoryDto readingHistoryDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -103,6 +69,7 @@ namespace OnlineLibrary.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{readingHistoryId}")]
         public async Task<IActionResult> Delete(int readingHistoryId)
         {
