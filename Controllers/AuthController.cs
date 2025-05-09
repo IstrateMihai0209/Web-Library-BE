@@ -68,7 +68,7 @@ public class AuthController : ControllerBase
                 Response.Cookies.Append("auth-token", token, new CookieOptions()
                 {
                     HttpOnly = true, // Prevent XSS
-                    Secure = false, // Only send over HTTPS
+                    Secure = true, // Only send over HTTPS
                     SameSite = SameSiteMode.Lax, // Warning!!!: Set to SameSiteMode.Strict to Prevent CSRF when frontend is on the same domain
                     Expires = DateTime.UtcNow.AddDays(1)
                 });
