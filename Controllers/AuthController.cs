@@ -69,7 +69,7 @@ public class AuthController : ControllerBase
                 {
                     HttpOnly = true, // Prevent XSS
                     Secure = true, // Only send over HTTPS
-                    SameSite = SameSiteMode.Strict, // Warning!!!: Set to SameSiteMode.Strict to Prevent CSRF when frontend is on the same domain
+                    SameSite = SameSiteMode.Lax, // Warning!!!: Set to SameSiteMode.Strict to Prevent CSRF when frontend is on the same domain
                     Expires = DateTime.UtcNow.AddDays(1)
                 });
                 

@@ -44,6 +44,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Azure.Extensions.AspNetCore.DataProtection.Blobs": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
             "Azure.Storage.Blobs": {
               "target": "Package",
               "version": "[12.23.0, )"

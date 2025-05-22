@@ -1,4 +1,5 @@
 using System.Text;
+using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
 using OnlineLibrary.Models;
@@ -16,6 +17,7 @@ using OnlineLibrary.Models.ReadingHistory;
 using OnlineLibrary.Models.ReadBooks;
 using OnlineLibrary.Models.Wishlist;
 using Microsoft.AspNetCore.Identity.UI.Services;
+
 using OnlineLibrary;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -34,7 +36,10 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo("D:/home/site/aspnetframework-data"))
+    .PersistKeysToAzureBlobStorage(
+        builder.Configuration["ConnectionStrings:AzureStorageConnectionString"],
+        builder.Configuration["AzureStorage:lib-files"],
+        "keys.xml")
     .SetApplicationName("OnlineLibrary");
 
 builder.Services.AddCors(options =>
