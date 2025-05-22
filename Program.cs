@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
 using OnlineLibrary.Models;
 using OnlineLibrary.Storage;
 using OnlineLibrary.Models.Book;
@@ -23,7 +24,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.Cookie.SameSite = SameSiteMode.Lax;
+    options.Cookie.SameSite = SameSiteMode.Strict;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Events.OnRedirectToLogin = context =>
     {
@@ -31,6 +32,10 @@ builder.Services.ConfigureApplicationCookie(options =>
         return Task.CompletedTask;
     };
 });
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo("D:/home/site/aspnetframework-data"))
+    .SetApplicationName("OnlineLibrary");
 
 builder.Services.AddCors(options =>
 {
