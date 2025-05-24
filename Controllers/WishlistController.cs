@@ -25,7 +25,6 @@ namespace OnlineLibrary.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         [ActionName(nameof(GetWishlistOfUser))]
         public async Task<IActionResult> GetWishlistOfUser([FromQuery] string userId, [FromQuery] int pageNumber = 1)
         {

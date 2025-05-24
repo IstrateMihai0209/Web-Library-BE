@@ -68,7 +68,7 @@ public class AuthController : ControllerBase
                 Response.Cookies.Append("auth-token", token, new CookieOptions()
                 {
                     HttpOnly = true, // Prevent XSS
-                    Secure = true, // Only send over HTTPS
+                    Secure = false, // Only send over HTTPS
                     SameSite = SameSiteMode.None, // Warning!!!: Set to SameSiteMode.Strict to Prevent CSRF when frontend is on the same domain
                     Expires = DateTime.UtcNow.AddDays(1)
                 });
@@ -98,7 +98,12 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
-        Response.Cookies.Delete("auth-token");
+        Response.Cookies.Delete("auth-token", new CookieOptions
+        {
+            Path = "/",
+            Secure = false,
+            SameSite = SameSiteMode.None,
+        });
         return Ok(new { message = "Logged out successfully!" });
     }
     

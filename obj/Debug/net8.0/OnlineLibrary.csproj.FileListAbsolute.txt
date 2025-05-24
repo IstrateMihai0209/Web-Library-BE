@@ -186,3 +186,11 @@ G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\runtimes\win\l
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
 G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\wwwroot\web.config
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Azure.Extensions.AspNetCore.DataProtection.Blobs.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.AspNetCore.DataProtection.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.AspNetCore.DataProtection.Abstractions.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
+G:\Facultate\OnlineLibrary Licenta\OnlineLibrary\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
