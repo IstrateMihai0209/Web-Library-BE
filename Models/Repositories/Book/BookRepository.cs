@@ -38,7 +38,7 @@ namespace OnlineLibrary.Models.Repositories.Book
             return await _dbSet
                 .Where(book => book.Title != bookModel.Title && (book.Genre == bookModel.Genre || Math.Abs(bookModel.PublishDate.Ticks - book.PublishDate.Ticks) <= PeriodDifference))
                 .Take(12)
-                .OrderBy(book => Math.Abs(bookModel.PublishDate.Ticks - book.PublishDate.Ticks))
+                //.OrderBy(book => Math.Abs(bookModel.PublishDate.Ticks - book.PublishDate.Ticks))
                 .ToListAsync();
         }
         
