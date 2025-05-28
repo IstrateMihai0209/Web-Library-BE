@@ -168,9 +168,9 @@ namespace OnlineLibrary.Controllers
 
                 return Json(similarBooks);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return StatusCode(InternalServerErrorCode, e);
+                return StatusCode(InternalServerErrorCode, InternalServerError);
             }
         }
         
