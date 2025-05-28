@@ -164,6 +164,7 @@ namespace OnlineLibrary.Controllers
                 
                 var similarBooks = await _unitOfWork.BookRepository.GetSimilarBooksAsync(currentBook);
                 if(similarBooks == null) return NotFound();
+                Console.WriteLine(similarBooks);
 
                 return Json(similarBooks);
             }
