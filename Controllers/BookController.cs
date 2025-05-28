@@ -169,7 +169,7 @@ namespace OnlineLibrary.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(InternalServerErrorCode, InternalServerError);
+                return StatusCode(InternalServerErrorCode, e);
             }
         }
         
