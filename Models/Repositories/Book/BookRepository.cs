@@ -52,10 +52,6 @@ namespace OnlineLibrary.Models.Repositories.Book
                 .OrderBy(book => Math.Abs((book.PublishDate - bookModel.PublishDate).Ticks))
                 .Take(12)
                 .ToList();
-                // .Where(book => book.Title != bookModel.Title && (book.Genre == bookModel.Genre || Math.Abs(bookModel.PublishDate.Ticks - book.PublishDate.Ticks) <= PeriodDifference))
-                // .Take(12)
-                // .OrderBy(book => Math.Abs(bookModel.PublishDate.Ticks - book.PublishDate.Ticks))
-                // .ToListAsync();
         }
         
         public async Task<IEnumerable<BookModel>> SearchBooks(string searchQuery, Dictionary<string, List<string>> filters, int pageNumber)
