@@ -53,7 +53,7 @@ public class AuthController : ControllerBase
             //      return StatusCode(StatusCodes.Status403Forbidden, new { message = "Email is not confirmed!" });
             
             var result = await _signInManager.PasswordSignInAsync(
-                model.Email,
+                user.UserName,
                 model.Password,
                 true,
                 false);
@@ -117,13 +117,16 @@ public class AuthController : ControllerBase
                 return BadRequest(new { Errors = ModelState.Values.SelectMany(v => v.Errors) });
 
             var existingUser = await _userManager.FindByEmailAsync(model.Email);
-            
             if (existingUser != null)
                 return BadRequest(new { Error = "User with this email address already exists!" });
 
+            var existingUsername = await _userManager.FindByNameAsync(model.Username);
+            if (existingUsername != null)
+                return BadRequest(new { Error = "User with this name already exists!" });
+
             var user = new IdentityUser
             {
-                UserName = model.Email,
+                UserName = model.Username,
                 Email = model.Email,
                 EmailConfirmed = false
             };
@@ -161,6 +164,18 @@ public class AuthController : ControllerBase
         {
             return StatusCode(StatusCodes.Status500InternalServerError, new { Error = ex.Message });
         }
+    }
+
+    [Authorize]
+    [HttpPut]
+    public async Task<IActionResult> UpdateUsername([FromBody] UsernameModel model)
+    {
+        if (!User.Identity.IsAuthenticated)
+            return Unauthorized();
+        
+        var user = await _userManager.GetUserAsync(User);
+        user.UserName = model.Username;
+        return Ok();
     }
 
     [Authorize]
