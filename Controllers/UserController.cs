@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using OnlineLibrary.Models;
 
 namespace OnlineLibrary.Controllers
 {
@@ -31,6 +33,38 @@ namespace OnlineLibrary.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return StatusCode(InternalServerErrorCode, InternalServerError);
+            }
+        }
+        
+        [Authorize]
+        [HttpPut("change-username")]
+        public async Task<IActionResult> UpdateUsername([FromBody] UsernameModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                    return NotFound(new { Message = "User not found!" });
+
+                var existingUser = await _userManager.FindByNameAsync(model.Username);
+                if (existingUser != null && existingUser.Id != user.Id)
+                    return BadRequest(new { Message = "Username already taken!" });
+
+                user.UserName = model.Username;
+                user.NormalizedUserName = _userManager.NormalizeName(model.Username);
+
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                    return BadRequest(new { Message = result.Errors });
+
+                return Ok(new { Message = "Username updated succesfully!" });
+            }
+            catch (Exception ex)
+            {
                 return StatusCode(InternalServerErrorCode, InternalServerError);
             }
         }

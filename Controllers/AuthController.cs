@@ -165,18 +165,7 @@ public class AuthController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, new { Error = ex.Message });
         }
     }
-
-    [Authorize]
-    [HttpPut]
-    public async Task<IActionResult> UpdateUsername([FromBody] UsernameModel model)
-    {
-        if (!User.Identity.IsAuthenticated)
-            return Unauthorized();
-        
-        var user = await _userManager.GetUserAsync(User);
-        user.UserName = model.Username;
-        return Ok();
-    }
+    
 
     [Authorize]
     [HttpGet("userinfo")] 
@@ -303,6 +292,9 @@ public class AuthController : ControllerBase
                 Expires = DateTime.UtcNow.AddDays(1)
             });
 
+            if (user.UserName == user.Email)
+                return Redirect(_configuration["Frontend:Change-Username"]);
+            
             return Redirect(_configuration["Frontend:Url"]);
         }
         catch (Exception ex)
